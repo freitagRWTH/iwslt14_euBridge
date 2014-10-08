@@ -1,0 +1,236 @@
+\documentclass[a4paper]{article}
+\usepackage{iwslt14,amssymb,amsmath,epsfig,url}
+\setcounter{page}{1}
+\sloppy		% better line breaks
+%\ninept
+%SM below a registered trademark definition
+\def\reg{{\rm\ooalign{\hfil
+     \raise.07ex\hbox{\scriptsize R}\hfil\crcr\mathhexbox20D}}}
+
+\usepackage{mathptmx}
+\usepackage{fp}
+\usepackage{xspace}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{booktabs}
+
+\def\roundposition{1}
+\def\roundpositiont{3}
+\edef\rounded{0}
+\newcommand{\rdm}[1]{\edef\rounded{0}\FPeval\rounded{round(#1,\roundposition)}\rounded}
+\newcommand{\rdmt}[1]{\edef\rounded{0}\FPeval\rounded{round(#1,\roundpositiont)}\rounded}
+\newcommand\BLEU{\textsc{Bleu}\xspace}
+\newcommand\TER{\textsc{Ter}\xspace}
+\newcommand{\GIZA}{{GIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small\bf++}}\xspace}
+\newcommand{\todo}[1]{ \textcolor{red}{#1} } 
+
+
+\title{EU-BRIDGE MT: Text Translation of Talks in the EU-BRIDGE Project}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Please make sure to keep technical paper submissions anonymous  !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\name{Firstname Lastname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If multiple authors, uncomment and edit the lines shown below.       %%
+%% Note that each line must be emphasized {\em } by itself.             %%
+%% (by Stephen Martucci, author of spconf.sty).                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \makeatletter
+% \def\name#1{\gdef\@name{#1\\}}
+% \makeatother
+% \name{{\em Firstname1 Lastname1, Firstname2 Lastname2, Firstname3 Lastname3,}\\
+%      {\em Firstname4 Lastname4}}
+%%%%%%%%%%%%%%% End of required multiple authors changes %%%%%%%%%%%%%%%%%
+
+%\address{Department of Speech Recognition and Machine Translation  \\
+%University of SomePlace, SomeCountry \\
+%{\small \tt firstname.lastname@iwslt.org}
+%}
+%
+\def\name#1{\gdef\@name{#1\\}}
+\makeatother
+\name{\bf $\setcounter{footnote}{1} ^\fnsymbol{footnote}$Markus Freitag, $^\fnsymbol{footnote}$JoernWuebker, $^\fnsymbol{footnote}$Stephan Peitz, $^\fnsymbol{footnote}$Hermann Ney, \\
+    \bf $\setcounter{footnote}{3} ^\fnsymbol{footnote}$Mathias Huck, $^\fnsymbol{footnote}$Philipp Koehn, \\
+\bf $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Alex Waibel, \\
+\bf $\setcounter{footnote}{4} ^\fnsymbol{footnote}$Nicola Bertoldi, $^\fnsymbol{footnote}$Mauro Cettolo, $ ^\fnsymbol{footnote}$Marcello Federico \\
+  $\setcounter{footnote}{1} ^\fnsymbol{footnote}$RWTH Aachen University, Aachen, Germany\\
+  $\setcounter{footnote}{3} ^\fnsymbol{footnote}$University of Edinburgh, Edinburgh, Scotland \\
+  $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Karlsruhe Institute of Technology, Karlsruhe, Germany\\
+  $\setcounter{footnote}{4} ^\fnsymbol{footnote}$Fondazione Bruno Kessler, Trento, Italy \\
+  $\setcounter{footnote}{1} ^\fnsymbol{footnote}${\tt \{freitag,wuebker,peitz,ney\}@cs.rwth-aachen.de} \\
+  $\setcounter{footnote}{3} ^\fnsymbol{footnote}${\tt \{mhuck,pkoehn\}@inf.ed.ac.uk} \\
+  $\setcounter{footnote}{2} ^\fnsymbol{footnote}${\tt \{alex.waibel\}@kit.edu} \\
+  $\setcounter{footnote}{4} ^\fnsymbol{footnote}${\tt \{bertoldi,cettolo,federico\}@fbk.eu}
+}
+
+\address{}
+
+\begin{document}
+\maketitle
+%
+\begin{abstract}
+EU-BRIDGE\footnote{\url{http://www.eu-bridge.eu}} is a European research project
+which is aimed at developing innovative speech translation technology.
+%
+This paper describes one of the collaborative efforts within EU-BRIDGE to
+further advance the state of the art in machine translation between two European
+language pairs, English$\to$French and German$\to$English. Four research institutions
+involved in the EU-BRIDGE project combined their individual machine translation
+systems and participated with a joint setup in the machine translation track of
+the evaluation campaign at the 2013 International Workshop on Spoken Language
+Translation (IWSLT).
+
+We present the methods and techniques to achieve high translation quality for
+text translation of talks which are applied at RWTH Aachen University, the
+University of Edinburgh, Karlsruhe Institute of Technology, and Fondazione
+Bruno Kessler. We then show how we have been able to considerably boost
+translation performance (as measured in terms of the metrics \BLEU and \TER) by
+means of system combination. The joint setups yield empirical gains of up to
+1.4 points in \BLEU and 2.8 points in \TER on the WMT newstest sets compared to
+the best single systems.
+\end{abstract}
+
+
+\section{Introduction}
+\label{introduction}
+
+The International Workshop on Spoken Language Translation \cite{iwslt:www-13} hosts a yearly open
+evaluation campaign on the translation of TED talks \cite{tedTalks:www}.
+The TED talks task is challenging from the perspective of automatic speech
+recognition (ASR) and machine translation (MT) as it involves spontaneous
+speech and heterogeneous topics and styles. The task is open domain, with
+a wide range of heavily dissimilar subjects and jargons across talks.
+IWSLT subdivides the task and separately evaluates \emph{automatic
+transcription of talks from audio to text}, \emph{speech translation of
+talks from audio}, and \emph{text translation of talks} as three different tracks 
+\cite{federico11:iwslt,IWSLT:2012}. The training data is constrained to the
+corpora specified by the organizers. The supplied list of corpora comprises a
+large amount of publicly available monolingual and parallel training data,
+though, including WIT$^3$~\cite{WIT3:2012},
+Europarl~\cite{koehn:2005:mtsummit}, Multi\-UN~\cite{eisele:2010:multiun}, the
+English and French Gigaword corpora as provided by the Linguistic Data
+Consortium~\cite{ldc:www}, and the News Crawl, $10^9$ and News Commentary
+corpora from the WMT shared task training data~\cite{wmt:www-13-task}. For the
+two ``official'' language pairs~\cite{iwslt:www-13} for translation at
+IWSLT 2013, English$\to$French and German$\to$English, these resources allow for
+building of systems with state-of-the-art performance by participants.
+
+The EU-BRIDGE project is funded by the European Union under the Seventh
+Framework Programme (FP7)~\cite{eu:www-fp7} and brings together several project
+partners who have each previously been very successful in contributing to
+advancements in automatic speech recognition and statistical machine
+translation. A number of languages and language pairs (both well-covered and
+under-resourced ones) are tackled with ASR and MT technology with different use
+cases in mind.  
+Four of the EU-BRIDGE project partners are particularly experienced in machine
+translation for European language pairs: RWTH Aachen University (RWTH), the
+University of Edinburgh (UEDIN), Karlsruhe Institute of Technology (KIT), and
+Fondazione Bruno Kessler (FBK) have all regularly participated in large-scale
+evaluation campaigns like IWSLT and WMT in recent years, thereby demonstrating
+their ability to continuously enhance their systems and promoting progress in
+machine translation.
+%
+Machine translation research within EU-BRIDGE has a strong focus on translation
+of spoken language. The IWSLT TED talks task constitutes an interesting
+framework for empirical testing of some of the systems for spoken language
+translation which are developed as part of the project.
+
+The work described here is an attempt to attain translation quality beyond
+strong single system performance via system
+combination~\cite{matusov:2006:eacl}.  Similar cooperative approaches based on
+system combination have proven to be valuable for machine translation in other
+projects, e.g.\ in the Quaero
+programme~\cite{freitag12:quaeroJointSub,peitz13:quaero}.
+Within EU-BRIDGE, we built combined system setups for text translation of talks
+from English to French as well as from German to English. We found that the
+combined translation engines of RWTH, UEDIN, KIT, and FBK systems are very
+effective. In the rest of the paper we will give some insight into the
+technology behind the combined engines which have been used to produce the
+joint EU-BRIDGE submission to the IWSLT 2013 MT track.
+
+The remainder of the paper is structured as follows:
+%
+We first describe the individual English$\to$French and German$\to$English
+systems by RWTH Aachen University (Section~\ref{rwth}), the University of
+Edinburgh (Section~\ref{uedin}), Karls\-ruhe Institute of Technology
+(Section~\ref{kit}), and Fondazione Bruno Kessler (Section~\ref{fbk}),
+respectively. We then present the techniques for machine translation system
+combination which have been employed to obtain consensus translations from the
+outputs of the individual systems of the project partners
+(Section~\ref{combination}).  Experimental results in
+\BLEU~\cite{papineni02:bam} and \TER~\cite{snover06:aso} are given in
+Section~\ref{results}. A brief error analysis on selected examples from the
+test data has been conducted which we discuss in
+Section~\ref{analysis}. We finally conclude the paper with
+Section~\ref{conclusion}.
+
+
+\section{RWTH Aachen University}
+\label{rwth}
+
+
+\section{University of Edinburgh}
+\label{uedin}
+
+
+\section{Karlsruhe Institute of Technology}
+\label{kit}
+
+\section{Fondazione Bruno Kessler}
+\label{fbk}
+
+
+\section{System Combination}
+\label{combination}
+System combination is used to produce consensus translations from multiple
+hypotheses which are outputs of different translation engines. The consensus
+translations can be better in terms of translation quality than any of the
+individual hypotheses. 
+To combine the engines of the project partners for the EU-BRIDGE joint setups,
+we applied a system combination implementation that has been developed at RWTH
+Aachen University.\pagebreak
+
+The basic concept of RWTH's approach to machine translation system combination
+has been described by Matusov et al.~\cite{matusov08:ieee-syscombi}.
+This approach includes an enhanced alignment and reordering framework.
+Alignments between the system outputs are learned using METEOR~\cite{banerjee05:maa}.
+A confusion network is then built using one of the hypotheses as ``primary''
+hypothesis. We do not make a hard decision on which of the hypotheses to use 
+for that, but instead combine all possible confusion networks into a single lattice.  
+Majority voting on the generated lattice is performed using the prior 
+probabilities for each system as well as other statistical models, e.g.\ 
+a special $n$-gram language model which is learned on the input hypotheses.
+Scaling factors of the models are optimized using the Minimum Error Rate
+Training algorithm. The translation with the best total score within the
+lattice is selected as consensus translation.
+
+
+\section{Results}
+\label{results}
+
+In this section, we present our experimental results. 
+
+
+\subsection{German$\to$English}
+
+
+\subsection{English$\to$French}
+
+
+\subsection{English$\to$German}
+
+\subsection{German$\to$English SLT}
+
+\section{Error Analysis}
+\label{analysis}
+
+\section{Conclusion}
+\label{conclusion}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{translation}
+
+\end{document}
+
