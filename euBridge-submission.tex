@@ -78,7 +78,7 @@ further advance the state of the art in machine translation between two European
 language pairs, English$\to$French and German$\to$English. Four research institutions
 involved in the EU-BRIDGE project combined their individual machine translation
 systems and participated with a joint setup in the machine translation track of
-the evaluation campaign at the 2013 International Workshop on Spoken Language
+the evaluation campaign at the 2014 International Workshop on Spoken Language
 Translation (IWSLT).
 
 We present the methods and techniques to achieve high translation quality for
@@ -192,7 +192,7 @@ we applied a system combination implementation that has been developed at RWTH
 Aachen University.\pagebreak
 
 The basic concept of RWTH's approach to machine translation system combination
-has been described by Matusov et al.~\cite{matusov08:ieee-syscombi}.
+has been described by Freitag et al.~\cite{freitag14:jane}.
 This approach includes an enhanced alignment and reordering framework.
 Alignments between the system outputs are learned using METEOR~\cite{banerjee05:maa}.
 A confusion network is then built using one of the hypotheses as ``primary''
@@ -209,18 +209,98 @@ lattice is selected as consensus translation.
 \section{Results}
 \label{results}
 
-In this section, we present our experimental results. 
+In this section, we present our experimental results. All scores are given in
+truecase \BLEU~\cite{papineni02:bam} and truecase \TER~\cite{snover06:aso}.
 
 
-\subsection{German$\to$English}
 
+\subsection{German$\to$English MT track}
+
+
+\begin{table}[bt!]
+  \caption{Results for the German$\to$English translation task. Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
+  %\vspace*{1.4em}
+  \begin{center}
+    \begin{tabular}{l|c|c|c|c|c|c}
+      %\hline
+      \bf{system} & \multicolumn{2}{c|}{\bf{tst2010}} & \multicolumn{2}{c|}{\bf{tst2011}}  & \multicolumn{2}{c}{\bf{tst2012}} \\
+      & \BLEU & \TER & \BLEU & \TER & \BLEU & \TER \\
+       \hline \hline
+       \textbf{UEDIN}                              & \rdm{31.3718719338} & \rdm{47.69810842495485} & \rdm{37.2750140709} & \rdm{42.57596814784209} & \rdm{31.6082745411} & \rdm{47.91680400817457} \\ 
+       \textbf{KIT}                              & \rdm{31.5055077292} & \rdm{47.606222869997783} & \rdm{37.0506652671} & \rdm{42.45201517484882} & \rdm{31.9539484287} & \rdm{47.58388819302525} \\
+       \textbf{RWTH}                        & \rdm{31.8236101862} & \rdm{47.162637432274007} & \rdm{38.3003021787} & \rdm{41.321413815122265} & \rdm{31.9973577528} & \rdm{47.00046146746654}  \\  \hline   
+    \textbf{syscom}                              & \rdm{33.3225473047} & \rdm{46.07585310985077} & \rdm{39.4434507166} & \rdm{40.60774518273673} & \rdm{33.4725712172} & \rdm{46.16322763530885} \\
+ %      \textbf{}                              & \rdm{} & \rdm{} & \rdm{} & \rdm{} & \rdm{} & \rdm{} &\\
+      \end{tabular}
+     \end{center}
+     \label{tab:DeEnResults}
+   \end{table}
 
 \subsection{English$\to$French}
 
+\begin{table}[bt!]
+  \caption{Results for the English$\to$French translation task. Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
+  %\vspace*{1.4em}
+  \begin{center}
+    \begin{tabular}{l|c|c|c|c|c|c}
+      %\hline
+      \bf{system} & \multicolumn{2}{c|}{\bf{tst2010}} & \multicolumn{2}{c|}{\bf{tst2011}}  & \multicolumn{2}{c}{\bf{tst2012}} \\
+      & \BLEU & \TER & \BLEU & \TER & \BLEU & \TER \\
+       \hline \hline
+        \textbf{FBK}                              & \rdm{32.7992} & \rdm{50.4449} & \rdm{39.1848} & \rdm{42.6122} & \rdm{40.0121} & \rdm{41.3801} \\
+        \textbf{KIT}                              & \rdm{33.1161} & \rdm{48.3904} & \rdm{37.2869} & \rdm{42.4766} & \rdm{39.1408} & \rdm{40.2053} \\
+       \textbf{RWTH}                              & \rdm{34.5252} & \rdm{47.5973} & \rdm{41.1475} & \rdm{40.1044} & \rdm{41.9988} & \rdm{38.5893} \\
+       \textbf{UEDIN-B}                           & \rdm{33.1165} & \rdm{49.2085} & \rdm{39.0833} & \rdm{42.0293} & \rdm{40.2152} & \rdm{39.9577} \\
+       \textbf{UEDIN-A}                           & \rdm{33.5323} & \rdm{48.5871} & \rdm{40.226} & \rdm{40.6602} & \rdm{40.6096} & \rdm{39.7641} \\ \hline
+       \textbf{syscom}                            & \rdm{35.1119} & \rdm{48.5091} & \rdm{41.6735} & \rdm{41.3786} & \rdm{43.9523} & \rdm{38.6568} \\
+      \end{tabular}
+     \end{center}
+     \label{tab:EnFrResults}
+   \end{table}
 
 \subsection{English$\to$German}
 
-\subsection{German$\to$English SLT}
+\begin{table}[bt!]
+  \caption{Results for the English$\to$German translation task. Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
+  %\vspace*{1.4em}
+  \begin{center}
+    \begin{tabular}{l|c|c|c|c|c|c}
+      %\hline
+      \bf{system} & \multicolumn{2}{c|}{\bf{tst2010}} & \multicolumn{2}{c|}{\bf{tst2011}}  & \multicolumn{2}{c}{\bf{tst2012}} \\
+      & \BLEU & \TER & \BLEU & \TER & \BLEU & \TER \\
+       \hline \hline
+       \textbf{KIT}                              &        \rdm{24.5282} & \rdm{55.1522} & \rdm{27.0848} & \rdm{50.5152} & \rdm{23.5199} & \rdm{56.0189} \\
+       \textbf{UEDIN-B}                              &\rdm{23.7506} & \rdm{55.8934} & \rdm{26.5083} & \rdm{50.9411} & \rdm{22.0828} & \rdm{57.3336} \\
+       \textbf{UEDIN-C}                              &\rdm{24.3881} & \rdm{55.4684} & \rdm{26.2983} & \rdm{50.6293} & \rdm{23.008} & \rdm{56.6899} \\
+       \textbf{UEDIN-A}                              &\rdm{24.5109} & \rdm{55.6562} & \rdm{27.6276} & \rdm{50.1502} & \rdm{23.2898} & \rdm{56.9536} \\ \hline
+       \textbf{syscom}                              &\rdm{25.8934} & \rdm{54.0387} & \rdm{28.1208} & \rdm{49.0931} & \rdm{24.9475} & \rdm{55.0294} \\
+      \end{tabular}
+     \end{center}
+     \label{tab:EnDeResults}
+   \end{table}
+
+
+\subsection{German$\to$English SLT track}
+
+
+\begin{table}[bt!]
+  \caption{Results for the German$\to$English SLT translation task. Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
+  %\vspace*{1.4em}
+  \begin{center}
+    \begin{tabular}{l|c|c}
+      %\hline
+      \bf{system} & \multicolumn{2}{c}{\bf{dev2012}} \\
+      & \BLEU & \TER \\
+       \hline \hline
+       \textbf{UEDIN}                              & \rdm{20.289498398} & \rdm{62.95624791259125} \\
+        \textbf{KIT}                              & \rdm{20.7182832044} & \rdm{60.50384083210076} \\
+       \textbf{RWTH}                              & \rdm{20.7958068268} & \rdm{61.41991507228398} \\ \hline
+       \textbf{syscom}                              & \rdm{22.2321791584} & \rdm{59.27763729185552} \\
+      \end{tabular}
+     \end{center}
+     \label{tab:DeEnSLTResults}
+   \end{table}
+
 
 \section{Error Analysis}
 \label{analysis}
