@@ -73,48 +73,25 @@
 EU-BRIDGE\footnote{\url{http://www.eu-bridge.eu}} is a European research project
 which is aimed at developing innovative speech translation technology.
 %
-This paper describes one of the collaborative efforts within EU-BRIDGE to
-further advance the state of the art in machine translation between two European
-language pairs, English$\to$French and German$\to$English. Four research institutions
-involved in the EU-BRIDGE project combined their individual machine translation
-systems and participated with a joint setup in the machine translation track of
-the evaluation campaign at the 2014 International Workshop on Spoken Language
-Translation (IWSLT).
-
-We present the methods and techniques to achieve high translation quality for
-text translation of talks which are applied at RWTH Aachen University, the
+One of the of the collaborative efforts within EU-BRIDGE is to produce
+joint submissions of up to four different partners to the the evaluation 
+campaign at the 2014 International Workshop on Spoken Language
+Translation (IWSLT). We submitted combined translations to the German$\to$English
+Spoken Language Translation (SLT) translation track as well as to the German$\to$English,
+English$\to$German and English$\to$French pure machine translation track.
+%
+In this paper, we present the techniques which were applied by the different 
+individual translation systems of RWTH Aachen University, the
 University of Edinburgh, Karlsruhe Institute of Technology, and Fondazione
-Bruno Kessler. We then show how we have been able to considerably boost
-translation performance (as measured in terms of the metrics \BLEU and \TER) by
-means of system combination. The joint setups yield empirical gains of up to
-1.4 points in \BLEU and 2.8 points in \TER on the WMT newstest sets compared to
-the best single systems.
+Bruno Kessler. We then show the combination approach developed at RWTH 
+Aachen University which combinded the individual systems. The consensus
+translations yield empirical gains of up to 2.3 points in \BLEU and 1.2 points in \TER
+compared to the best individual system.
 \end{abstract}
 
 
 \section{Introduction}
 \label{introduction}
-
-The International Workshop on Spoken Language Translation \cite{iwslt:www-13} hosts a yearly open
-evaluation campaign on the translation of TED talks \cite{tedTalks:www}.
-The TED talks task is challenging from the perspective of automatic speech
-recognition (ASR) and machine translation (MT) as it involves spontaneous
-speech and heterogeneous topics and styles. The task is open domain, with
-a wide range of heavily dissimilar subjects and jargons across talks.
-IWSLT subdivides the task and separately evaluates \emph{automatic
-transcription of talks from audio to text}, \emph{speech translation of
-talks from audio}, and \emph{text translation of talks} as three different tracks 
-\cite{federico11:iwslt,IWSLT:2012}. The training data is constrained to the
-corpora specified by the organizers. The supplied list of corpora comprises a
-large amount of publicly available monolingual and parallel training data,
-though, including WIT$^3$~\cite{WIT3:2012},
-Europarl~\cite{koehn:2005:mtsummit}, Multi\-UN~\cite{eisele:2010:multiun}, the
-English and French Gigaword corpora as provided by the Linguistic Data
-Consortium~\cite{ldc:www}, and the News Crawl, $10^9$ and News Commentary
-corpora from the WMT shared task training data~\cite{wmt:www-13-task}. For the
-two ``official'' language pairs~\cite{iwslt:www-13} for translation at
-IWSLT 2013, English$\to$French and German$\to$English, these resources allow for
-building of systems with state-of-the-art performance by participants.
 
 The EU-BRIDGE project is funded by the European Union under the Seventh
 Framework Programme (FP7)~\cite{eu:www-fp7} and brings together several project
@@ -138,16 +115,15 @@ translation which are developed as part of the project.
 
 The work described here is an attempt to attain translation quality beyond
 strong single system performance via system
-combination~\cite{matusov:2006:eacl}.  Similar cooperative approaches based on
-system combination have proven to be valuable for machine translation in other
-projects, e.g.\ in the Quaero
-programme~\cite{freitag12:quaeroJointSub,peitz13:quaero}.
+combination~\cite{freitag14:jane,matusov:2006:eacl}. Similar cooperative approaches based on
+system combination have proven to be valuable for machine translation in previous
+joint submissions, e.g.~\cite{freitag14:wmtEuBridge,freitag2013:euBridge}.
 Within EU-BRIDGE, we built combined system setups for text translation of talks
 from English to French as well as from German to English. We found that the
 combined translation engines of RWTH, UEDIN, KIT, and FBK systems are very
 effective. In the rest of the paper we will give some insight into the
 technology behind the combined engines which have been used to produce the
-joint EU-BRIDGE submission to the IWSLT 2013 MT track.
+joint EU-BRIDGE submission to the IWSLT 2014 MT track.
 
 The remainder of the paper is structured as follows:
 %
@@ -195,29 +171,62 @@ We optimize the log-linear combination of all these models on the provided devel
 
 \section{System Combination}
 \label{combination}
+\label{sec:syscom}
+
+\begin{figure*}[t!]
+\resizebox{\linewidth}{!}{
+    \includegraphics{pictures/syscombi-architecture.pdf}
+}
+\vspace*{-1.5em}
+\caption{Confusion network decoding structure.}
+\vspace*{-1.0em}
+\label{fig:syscomStructure}
+\end{figure*}
+
+In this section, we will give a short re-introduction of confusion network system combination.
 System combination is used to produce consensus translations from multiple
 hypotheses which are outputs of different translation engines. The consensus
 translations can be better in terms of translation quality than any of the
 individual hypotheses. 
 To combine the engines of the project partners for the EU-BRIDGE joint setups,
 we applied a system combination implementation that has been developed at RWTH
-Aachen University.\pagebreak
+Aachen University ~\cite{freitag14:jane}.
 
-The basic concept of RWTH's approach to machine translation system combination
-has been described by Freitag et al.~\cite{freitag14:jane}.
-This approach includes an enhanced alignment and reordering framework.
-Alignments between the system outputs are learned using METEOR~\cite{banerjee05:maa}.
-A confusion network is then built using one of the hypotheses as ``primary''
-hypothesis. We do not make a hard decision on which of the hypotheses to use 
-for that, but instead combine all possible confusion networks into a single lattice.  
-Majority voting on the generated lattice is performed using the prior 
-probabilities for each system as well as other statistical models, e.g.\ 
-a special $n$-gram language model which is learned on the input hypotheses.
-Scaling factors of the models are optimized using the Minimum Error Rate
-Training algorithm. The translation with the best total score within the
-lattice is selected as consensus translation.
+In Figure \ref{fig:syscomStructure} an overview is illustrated.
+We first address the generation of a confusion network from $I$ input translations. 
+For that we need a pairwise alignment between all input hypotheses. This alignment
+is calculated via METEOR~\cite{banerjee05:maa}. The
+hypotheses are then reordered to match the word order of a selected
+skeleton hypothesis. Instead of using only one of the input hypothesis as skeleton, we
+generate $I$ different CNs each having one of the input systems as skeleton. The final
+lattice is the union of all $I$ previous generated CNs.
+In Figure~\ref{fig:1}
+an example confusion network of $I=4$ input translations with one skeleton translation is illustrated. Between two adjacent nodes, we always
+have a choice between the $I$ different system output words.
+The confusion network decoding step basically involves determining the shortest path through 
+the network. Each arc is assigned one score which is a linear model combination (Equation~\ref{eq:loglin})
+of $M$ different models.
 
+\begin{equation}
+\label{eq:loglin}
+ \sum_{m=1}^M \lambda_m h_m
+\end{equation}
 
+The standard set of models is a word penalty, a 3-gram language
+model trained on the input hypotheses and for each system one binary voting feature.
+During decoding the binary voting feature for system $i$ ($1 \leq i \leq I$) is~1 iff the word is from system $i$, otherwise~0.
+The $M$ different model weights $\lambda_m$ are trained with MERT~\cite{och03:mer}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\linewidth]{pictures/example1}
+\vspace*{-0.5em}
+\caption{System A: \emph{the red cab} ; System B: \emph{the red train} ; System C: \emph{a blue car} ; System D: \emph{a green car} ; Reference: \emph{the blue car} .}
+\label{fig:1}
+\vspace*{-1.2em}
+\end{figure}
+
+%
 \section{Results}
 \label{results}
 
@@ -265,6 +274,7 @@ truecase \BLEU~\cite{papineni02:bam} and truecase \TER~\cite{snover06:aso}.
        \textbf{UEDIN-B}                           & \rdm{33.1165} & \rdm{49.2085} & \rdm{39.0833} & \rdm{42.0293} & \rdm{40.2152} & \rdm{39.9577} \\
        \textbf{UEDIN-A}                           & \rdm{33.5323} & \rdm{48.5871} & \rdm{40.226} & \rdm{40.6602} & \rdm{40.6096} & \rdm{39.7641} \\ \hline
        \textbf{syscom}                            & \rdm{35.1119} & \rdm{48.5091} & \rdm{41.6735} & \rdm{41.3786} & \rdm{43.9523} & \rdm{38.6568} \\
+       \textbf{syscomRNN}                            & \rdm{35.2208} & \rdm{48.5278} & \rdm{41.7089} & \rdm{41.2702} & \rdm{44.3163} & \rdm{38.5443}
       \end{tabular}
      \end{center}
      \label{tab:EnFrResults}
