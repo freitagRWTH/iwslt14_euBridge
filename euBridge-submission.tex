@@ -183,29 +183,85 @@ Section~\ref{conclusion}.
 
 \section{System Combination}
 \label{combination}
+\label{sec:syscom}
+
+\begin{figure*}[t!]
+\resizebox{\linewidth}{!}{
+    \includegraphics{pictures/syscombi-architecture.pdf}
+}
+\vspace*{-1.5em}
+\caption{Confusion network decoding structure.}
+\vspace*{-1.0em}
+\label{fig:syscomStructure}
+\end{figure*}
+
+In this section, we will give a short re-introduction of confusion network system combination.
 System combination is used to produce consensus translations from multiple
 hypotheses which are outputs of different translation engines. The consensus
 translations can be better in terms of translation quality than any of the
 individual hypotheses. 
 To combine the engines of the project partners for the EU-BRIDGE joint setups,
 we applied a system combination implementation that has been developed at RWTH
-Aachen University.\pagebreak
+Aachen University ~\cite{freitag14:jane}.
 
-The basic concept of RWTH's approach to machine translation system combination
-has been described by Freitag et al.~\cite{freitag14:jane}.
-This approach includes an enhanced alignment and reordering framework.
-Alignments between the system outputs are learned using METEOR~\cite{banerjee05:maa}.
-A confusion network is then built using one of the hypotheses as ``primary''
-hypothesis. We do not make a hard decision on which of the hypotheses to use 
-for that, but instead combine all possible confusion networks into a single lattice.  
-Majority voting on the generated lattice is performed using the prior 
-probabilities for each system as well as other statistical models, e.g.\ 
-a special $n$-gram language model which is learned on the input hypotheses.
-Scaling factors of the models are optimized using the Minimum Error Rate
-Training algorithm. The translation with the best total score within the
-lattice is selected as consensus translation.
+In Figure \ref{fig:syscomStructure} an overview is illustrated.
+We first address the generation of a confusion network from $I$ input translations. 
+For that we need a pairwise alignment between all input hypotheses. This alignment
+is calculated via METEOR~\cite{banerjee05:maa}. The
+hypotheses are then reordered to match the word order of a selected
+skeleton hypothesis. Instead of using only one of the input hypothesis as skeleton, we
+generate $I$ different CNs each having one of the input systems as skeleton. The final
+lattice is the union of all $I$ previous generated CNs.
+In Figure~\ref{fig:1}
+an example confusion network of $I=4$ input translations with one skeleton translation is illustrated. Between two adjacent nodes, we always
+have a choice between the $I$ different system output words.
+The confusion network decoding step basically involves determining the shortest path through 
+the network. Each arc is assigned one score which is a linear model combination (Equation~\ref{eq:loglin})
+of $M$ different models.
+
+\begin{equation}
+\label{eq:loglin}
+ \sum_{m=1}^M \lambda_m h_m
+\end{equation}
+
+The standard set of models is a word penalty, a 3-gram language
+model trained on the input hypotheses and for each system one binary voting feature.
+During decoding the binary voting feature for system $i$ ($1 \leq i \leq I$) is~1 iff the word is from system $i$, otherwise~0.
+The $M$ different model weights $\lambda_m$ are trained with MERT~\cite{och03:mert}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\linewidth]{pictures/example1}
+\vspace*{-0.5em}
+\caption{System A: \emph{the red cab} ; System B: \emph{the red train} ; System C: \emph{a blue car} ; System D: \emph{a green car} ; Reference: \emph{the blue car} .}
+\label{fig:1}
+\vspace*{-1.2em}
+\end{figure}
 
 
+%System combination is used to produce consensus translations from multiple
+%hypotheses which are outputs of different translation engines. The consensus
+%translations can be better in terms of translation quality than any of the
+%individual hypotheses. 
+%To combine the engines of the project partners for the EU-BRIDGE joint setups,
+%we applied a system combination implementation that has been developed at RWTH
+%Aachen University.\pagebreak
+%
+%The basic concept of RWTH's approach to machine translation system combination
+%has been described by Freitag et al.~\cite{freitag14:jane}.
+%This approach includes an enhanced alignment and reordering framework.
+%Alignments between the system outputs are learned using METEOR~\cite{banerjee05:maa}.
+%A confusion network is then built using one of the hypotheses as ``primary''
+%hypothesis. We do not make a hard decision on which of the hypotheses to use 
+%for that, but instead combine all possible confusion networks into a single lattice.  
+%Majority voting on the generated lattice is performed using the prior 
+%probabilities for each system as well as other statistical models, e.g.\ 
+%a special $n$-gram language model which is learned on the input hypotheses.
+%Scaling factors of the models are optimized using the Minimum Error Rate
+%Training algorithm. The translation with the best total score within the
+%lattice is selected as consensus translation.
+%
+%
 \section{Results}
 \label{results}
 
@@ -253,6 +309,7 @@ truecase \BLEU~\cite{papineni02:bam} and truecase \TER~\cite{snover06:aso}.
        \textbf{UEDIN-B}                           & \rdm{33.1165} & \rdm{49.2085} & \rdm{39.0833} & \rdm{42.0293} & \rdm{40.2152} & \rdm{39.9577} \\
        \textbf{UEDIN-A}                           & \rdm{33.5323} & \rdm{48.5871} & \rdm{40.226} & \rdm{40.6602} & \rdm{40.6096} & \rdm{39.7641} \\ \hline
        \textbf{syscom}                            & \rdm{35.1119} & \rdm{48.5091} & \rdm{41.6735} & \rdm{41.3786} & \rdm{43.9523} & \rdm{38.6568} \\
+       \textbf{syscomRNN}                            & \rdm{35.2208} & \rdm{48.5278} & \rdm{41.7089} & \rdm{41.2702} & \rdm{44.3163} & \rdm{38.5443}
       \end{tabular}
      \end{center}
      \label{tab:EnFrResults}
