@@ -73,7 +73,7 @@
 EU-BRIDGE\footnote{\url{http://www.eu-bridge.eu}} is a European research project
 which is aimed at developing innovative speech translation technology.
 %
-One of the of the collaborative efforts within EU-BRIDGE is to produce
+One of the collaborative efforts within EU-BRIDGE is to produce
 joint submissions of up to four different partners to the the evaluation 
 campaign at the 2014 International Workshop on Spoken Language
 Translation (IWSLT). We submitted combined translations to the German$\to$English
@@ -84,7 +84,7 @@ In this paper, we present the techniques which were applied by the different
 individual translation systems of RWTH Aachen University, the
 University of Edinburgh, Karlsruhe Institute of Technology, and Fondazione
 Bruno Kessler. We then show the combination approach developed at RWTH 
-Aachen University which combinded the individual systems. The consensus
+Aachen University which combined the individual systems. The consensus
 translations yield empirical gains of up to 2.3 points in \BLEU and 1.2 points in \TER
 compared to the best individual system.
 \end{abstract}
@@ -92,8 +92,6 @@ compared to the best individual system.
 
 \section{Introduction}
 \label{introduction}
-RWTH rules
-
 
 The EU-BRIDGE project is funded by the European Union under the Seventh
 Framework Programme (FP7)~\cite{eu:www-fp7} and brings together several project
@@ -115,39 +113,34 @@ of spoken language. The IWSLT TED talks task constitutes an interesting
 framework for empirical testing of some of the systems for spoken language
 translation which are developed as part of the project.
 
-The work described here is an attempt to attain translation quality beyond
-strong single system performance via system
-combination~\cite{freitag14:jane,matusov:2006:eacl}. Similar cooperative approaches based on
-system combination have proven to be valuable for machine translation in previous
-joint submissions, e.g.~\cite{freitag14:wmtEuBridge,freitag2013:euBridge}.
-Within EU-BRIDGE, we built combined system setups for text translation of talks
-from English to French as well as from German to English. We found that the
-combined translation engines of RWTH, UEDIN, KIT, and FBK systems are very
-effective. In the rest of the paper we will give some insight into the
-technology behind the combined engines which have been used to produce the
-joint EU-BRIDGE submission to the IWSLT 2014 MT track.
+In this work, we describe the EU-BRIDGE submissions to the 2014 IWSLT translation
+task. This year, we combined several single systems of RWTH, UEDIN, KIT, and FBK 
+for the German$\to$English SLT, German$\to$English MT, English$\to$German MT and English$\to$French MT tasks.
+Additionally to the standard system combination pipeline
+presented in \cite{freitag14:jane,matusov:2006:eacl}, we applied a RNN network
+rescoring step \cite{sundermeyer14:bidirRNN} for the English$\to$French MT task.
+Similar cooperative approaches based on system combination have proven to be 
+valuable for machine translation in previous joint submissions,
+e.g.~\cite{freitag14:wmtEuBridge,freitag2013:euBridge}.
+
 
 The remainder of the paper is structured as follows:
 %
-We first describe the individual English$\to$French and German$\to$English
-systems by RWTH Aachen University (Section~\ref{rwth}), the University of
-Edinburgh (Section~\ref{uedin}), Karls\-ruhe Institute of Technology
+We first describe the individual system setups by RWTH Aachen University (Section~\ref{rwth}),
+the University of Edinburgh (Section~\ref{uedin}), Karls\-ruhe Institute of Technology
 (Section~\ref{kit}), and Fondazione Bruno Kessler (Section~\ref{fbk}),
 respectively. We then present the techniques for machine translation system
 combination which have been employed to obtain consensus translations from the
 outputs of the individual systems of the project partners
-(Section~\ref{combination}).  Experimental results in
-\BLEU~\cite{papineni02:bam} and \TER~\cite{snover06:aso} are given in
-Section~\ref{results}. A brief error analysis on selected examples from the
-test data has been conducted which we discuss in
-Section~\ref{analysis}. We finally conclude the paper with
+(Section~\ref{combination}).  Experimental results in are given in
+Section~\ref{results}. We analyse the translation results in
+Section~\ref{analysis} and finally conclude the paper with
 Section~\ref{conclusion}.
 
 
 \section{RWTH Aachen University}
 \label{rwth}
 
-test2
 
 
 \section{University of Edinburgh}
