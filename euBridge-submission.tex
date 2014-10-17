@@ -163,8 +163,13 @@ additionally a string-to-tree syntax-based system
 
 \subsubsection{German$\to$English}
 
-Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting \cite{ref:koehn2003a} have been applied to the German source language side in a preprocessing step. 
-The system was tuned on a concatenation of the dev2010 and dev2012 development sets.
+Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting
+\cite{ref:koehn2003a} have been applied to the German source language side in a
+preprocessing step.  A factored translation model \cite{koehn2012factor} has
+been employed. Source side factors are word, lemma, part-of-speech tag, and
+morphological tag. Target side factors are word, lemma, and part-of-speech tag.
+Weights for the log-linear model combination have been tuned on a concatenation
+of the dev2010 and dev2012 sets.
 
 \subsubsection{English$\to$French}
 
