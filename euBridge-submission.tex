@@ -50,16 +50,16 @@
 %
 \def\name#1{\gdef\@name{#1\\}}
 \makeatother
-\name{\bf $\setcounter{footnote}{1} ^\fnsymbol{footnote}$Markus Freitag, $^\fnsymbol{footnote}$JoernWuebker, $^\fnsymbol{footnote}$Stephan Peitz, $^\fnsymbol{footnote}$Hermann Ney, \\
-    \bf $\setcounter{footnote}{3} ^\fnsymbol{footnote}$Mathias Huck, $^\fnsymbol{footnote}$Philipp Koehn, \\
-\bf $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Mohammed Mediani,$\setcounter{footnote}{2} ^\fnsymbol{footnote}$Isabel Slawik,$\setcounter{footnote}{2} ^\fnsymbol{footnote}$Jan Niehues,$\setcounter{footnote}{2} ^\fnsymbol{footnote}$Eunah Cho, $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Alex Waibel, \\
-\bf $\setcounter{footnote}{4} ^\fnsymbol{footnote}$Nicola Bertoldi, $^\fnsymbol{footnote}$Mauro Cettolo, $ ^\fnsymbol{footnote}$Marcello Federico \\
+\name{\bf $\setcounter{footnote}{1} ^\fnsymbol{footnote}$Markus Freitag, $^\fnsymbol{footnote}$Joern Wuebker, $^\fnsymbol{footnote}$Stephan Peitz, $^\fnsymbol{footnote}$Hermann Ney, \\
+  \bf $\setcounter{footnote}{3} ^\fnsymbol{footnote}$Matthias Huck, $^\fnsymbol{footnote}$Alexandra Birch, $^\fnsymbol{footnote}$Nadir Durrani, $^\fnsymbol{footnote}$Philipp Koehn, \\
+\bf $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Mohammed Mediani, $^\fnsymbol{footnote}$Isabel Slawik, $^\fnsymbol{footnote}$Jan Niehues, $^\fnsymbol{footnote}$Eunah Cho, $^\fnsymbol{footnote}$Alex Waibel, \\
+\bf $\setcounter{footnote}{4}^\fnsymbol{footnote}$Nicola Bertoldi, $^\fnsymbol{footnote}$Mauro Cettolo, $^\fnsymbol{footnote}$Marcello Federico \\
   $\setcounter{footnote}{1} ^\fnsymbol{footnote}$RWTH Aachen University, Aachen, Germany\\
   $\setcounter{footnote}{3} ^\fnsymbol{footnote}$University of Edinburgh, Edinburgh, Scotland \\
   $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Karlsruhe Institute of Technology, Karlsruhe, Germany\\
   $\setcounter{footnote}{4} ^\fnsymbol{footnote}$Fondazione Bruno Kessler, Trento, Italy \\
   $\setcounter{footnote}{1} ^\fnsymbol{footnote}${\tt \{freitag,wuebker,peitz,ney\}@cs.rwth-aachen.de} \\
-  $\setcounter{footnote}{3} ^\fnsymbol{footnote}${\tt \{mhuck,pkoehn\}@inf.ed.ac.uk} \\
+  $\setcounter{footnote}{3} ^\fnsymbol{footnote}${\tt a.birch@ed.ac.uk \{mhuck,dnadir,pkoehn\}@inf.ed.ac.uk} \\
   $\setcounter{footnote}{2} ^\fnsymbol{footnote}${\tt \{firstname.lastname\}@kit.edu} \\
   $\setcounter{footnote}{4} ^\fnsymbol{footnote}${\tt \{bertoldi,cettolo,federico\}@fbk.eu}
 }
@@ -77,8 +77,8 @@ One of the collaborative efforts within EU-BRIDGE is to produce
 joint submissions of up to four different partners to the the evaluation 
 campaign at the 2014 International Workshop on Spoken Language
 Translation (IWSLT). We submitted combined translations to the German$\to$English
-Spoken Language Translation (SLT) translation track as well as to the German$\to$English,
-English$\to$German and English$\to$French pure machine translation track.
+spoken language translation (SLT) track as well as to the German$\to$English,
+English$\to$German and English$\to$French machine translation (MT) track.
 %
 In this paper, we present the techniques which were applied by the different 
 individual translation systems of RWTH Aachen University, the
@@ -117,7 +117,7 @@ In this work, we describe the EU-BRIDGE submissions to the 2014 IWSLT translatio
 task. This year, we combined several single systems of RWTH, UEDIN, KIT, and FBK 
 for the German$\to$English SLT, German$\to$English MT, English$\to$German MT and English$\to$French MT tasks.
 Additionally to the standard system combination pipeline
-presented in \cite{freitag14:jane,matusov:2006:eacl}, we applied a RNN network
+presented in \cite{freitag14:jane,matusov:2006:eacl}, we applied a recurrent neural network 
 rescoring step \cite{sundermeyer14:bidirRNN} for the English$\to$French MT task.
 Similar cooperative approaches based on system combination have proven to be 
 valuable for machine translation in previous joint submissions,
