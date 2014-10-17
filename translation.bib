@@ -1,13 +1,24 @@
 @PREAMBLE{ "\newcommand{\SortNoop}[1]{}" }
-@STRING{acl02	= "{Proc.\ of the 40th Annual Meeting of the Association for
+@STRING{acl	= "{Proc.\ of the Annual Meeting of the Assoc.~for
 		  Computational Linguistics (ACL)}" }
-@STRING{acl03	= "{Proc.\ of the 41th Annual Meeting of the Association for
+@STRING{acl02	= "{Proc.\ of the 40th Annual Meeting of the Assoc.~for
+		  Computational Linguistics (ACL)}" }
+@STRING{acl03	= "{Proc.\ of the 41th Annual Meeting of the Assoc.~for
 		  Computational Linguistics (ACL)}" }
 @STRING{acl05-eval="{43rd Annual Meeting of the Assoc.~for Computational
 		  Linguistics: Proc.~Workshop on Intrinsic and Extrinsic
 		  Evaluation Measures for MT and/or Summarization}" }
 @STRING{amta	= "{Conf.\ of the Assoc.~for Machine Translation in the
 		  Americas (AMTA)}" }
+@STRING{eacl	= "{Proc.\ of the Conf.~of the Europ. Chapter of the
+		  Assoc.~for Computational Linguistics (EACL)}" }
+@STRING{emnlp	= "{Proc.\ of the Conf.\ on Empirical Methods for Natural
+		  Language Processing (EMNLP)}" }
+@STRING{hltnaacl= "{Proc.\ of the Human Language Technology Conf. / North
+		  American Chapter of the Assoc.~for Computational
+		  Linguistics (HLT-NAACL)}" }
+@STRING{wmt	= "{Proc.~of the Workshop on Statistical Machine
+		  Translation (WMT)}" }
 
 @InProceedings{	  banerjee05:maa,
   author	= "Satanjeev Banerjee and Alon Lavie",
@@ -31,8 +42,7 @@
   author	= {E.~Matusov and N.~Ueffing and H.~Ney},
   title		= {{Computing Consensus Translation from Multiple Machine
 		  Translation Systems Using Enhanced Hypotheses Alignment}},
-  booktitle	= {Conference of the European Chapter of the Association for
-		  Computational Linguistics (EACL)},
+  booktitle	= eacl,
   year		= 2006,
   address       = {Trento, Italy},
   month         = apr,
@@ -78,11 +88,10 @@
 
 @InProceedings{	  freitag14:jane,
   author	= {Freitag, Markus and Huck, Matthias and Ney, Hermann},
-  title		= {Jane: Open Source Machine Translation System Combination},
-  booktitle	= {Conference of the European Chapter of the Association for
-		  Computational Linguistics},
+  title		= "{Jane: Open Source Machine Translation System Combination}",
+  booktitle	= eacl,
   year		= 2014,
-  pages		= {29-32},
+  pages		= {29--32},
   address	= {Gothenburg, Sweden},
   month		= apr,
   booktitlelink	= {http://eacl2014.org/},
@@ -148,16 +157,20 @@ address = {Ann Arbor, Michigan, USA},
   title={The {KIT} {E}nglish-{F}rench {T}ranslation systems for {IWSLT} 2011},
   author={Mediani, Mohammed and Cho, Eunah and Niehues, Jan and Herrmann, Teresa and Waibel, Alex},
   booktitle ={Proceedings of the Eight International Workshop on Spoken Language Translation (IWSLT)},
-  adress = {San Francisco, CA},
+  address = {San Francisco, CA, USA},
   year={2011}
 }
+
 @inproceedings{ref:koehn2003a,
   author = {Philipp Koehn and Kevin Knight},
   title = {{E}mpirical {M}ethods for {C}ompound {S}plitting},
-  booktitle = {EACL},
+  booktitle = eacl,
   address = {Budapest, Hungary},
   year = {2003},
+  month = apr,
+  pages = {187--194}
 }
+
 @inproceedings{ref:rottmann2007,
   author = {Kay Rottmann and Stephan Vogel},
   title = {{W}ord {R}eordering in {S}tatistical {M}achine {T}ranslation with a {POS}-{B}ased {D}istortion {M}odel},
@@ -172,10 +185,11 @@ in Machine Translation (TMI)},
 @inproceedings{ref:schmid1994,
     author = {Helmut Schmid},
     title = {{P}robabilistic {P}art-of-{S}peech {T}agging {U}sing {D}ecision {T}rees},
-    booktitle = {International Conference on New Methods in Language Processing},
-    address = {Manchester, United Kingdom},
+    booktitle = {Int.\ Conf.\ on New Methods in Language Processing},
+    address = {Manchester, UK},
     year = {1994},
 }
+
 @inproceedings{ref:niehues2009,
   author =       {Jan Niehues and Teresa Herrmann and Muntsin Kolss and Alex Waibel},
   title =         {{T}he {U}niversit\"{a}t {K}arlsruhe {T}ranslation {S}ystem for the {EACL}-{WMT} 2009},
@@ -183,22 +197,24 @@ in Machine Translation (TMI)},
   year =          {2009},
   address =       {Athens, Greece},
 }
+
 @InProceedings{ref:herrmann2013syntax,
 author    = {Herrmann, Teresa  and  Niehues, Jan  and  Waibel, Alex},
 title     = {Combining {W}ord {R}eordering {M}ethods on different {L}inguistic {A}bstraction {L}evels for {S}tatistical {M}achine {T}ranslation},
 booktitle = {Proceedings of the Seventh Workshop on Syntax, Semantics and Structure in Statistical Translation},
 month     = {June},
 year      = {2013},
-address   = {Altanta, Georgia, USA},
-publisher = {Association for Computational Linguistics},
+address   = {Altanta, GA, USA},
 }
+
 @inproceedings{ref:stanfordParser,
  author = {Rafferty, Anna N. and Manning, Christopher D.},
  title = {{P}arsing {T}hree {G}erman {T}reebanks: {L}exicalized and {U}nlexicalized {B}aselines},
- booktitle = {Proceedings of the Workshop on Parsing German},
+ booktitle = {Proc.\ of the Workshop on Parsing German},
  year = {2008},
- location = {Columbus, Ohio},
+ address = {Columbus, OH, USA},
 }
+
 @inproceedings{ref:koehn2005,
   author =        {Philipp Koehn and Amittai Axelrod and Alexandra B. Mayne and Chris Callison-Burch and Miles Osborne and David Talbot},
   title =         {{E}dinburgh {S}ystem {D}escription for the 2005 {IWSLT} {S}peech {T}ranslation {E}valuation},
@@ -206,6 +222,7 @@ publisher = {Association for Computational Linguistics},
   year =          {2005},
   address =       {Pittsburgh, PA, USA},
 }
+
 @ARTICLE{ref:Giza,
 AUTHOR = {Franz Josef Och and Hermann Ney},
 TITLE = {A {S}ystematic {C}omparison of {V}arious {S}tatistical {A}lignment {M}odels},
@@ -217,6 +234,7 @@ PAGES = {19--51},
 publisher =    {MIT Press},
 address =      {Cambridge, MA, USA},
 }
+
 @InProceedings{Niehues2012PhraseTableAdaptation,
 author="Niehues, J.
 and Waibel, A.",
@@ -224,6 +242,7 @@ title="{D}etailed {A}nalysis of {D}ifferent {S}trategies for {P}hrase {T}able {A
 booktitle="Proceedings of the Tenth Conference of the Association for Machine Translation in the Americas (AMTA)",
 year="2012",
 }
+
 @InProceedings{niehues-waibel:2013:wmt,
 author="Niehues, Jan
 and Waibel, Alex",
@@ -234,6 +253,7 @@ publisher="Association for Computational Linguistics",
 address="Sofia, Bulgaria",
 pages="512--520",
 }
+
 @inproceedings{niehues2011,
   author =        {Jan Niehues and Teresa Herrmann and Stephan Vogel and Alex Waibel},
   title =         {{W}ider {C}ontext by {U}sing {B}ilingual {L}anguage {M}odels in {M}achine {T}ranslation},
@@ -241,6 +261,7 @@ pages="512--520",
   year =          {2011},
   address =       {Edinburgh, UK},
 }
+
 @InProceedings{moore:2010:dataselection,
 author="Moore, R.C.
 and Lewis, W.",
@@ -251,18 +272,75 @@ publisher="Association for Computational Linguistics",
 address="Stroudsburg, PA, USA",
 pages="220--224",
 }
+
 @INPROCEEDINGS{ mkcls,
 AUTHOR = "Franz Josef Och",
 TITLE = "An {E}fficient {M}ethod for {D}etermining {B}ilingual {W}ord {C}lasses.",
-booktitle = "EACL'99",
+booktitle = eacl,
 YEAR = {1999}  }
 
 @InProceedings { sundermeyer14:bidirRNN,
 author= {Sundermeyer, Martin and Alkhouli, Tamer and Wuebker, Joern and Ney, Hermann},
 title= {Translation Modeling with Bidirectional Recurrent Neural Networks},
-booktitle= {Conference on Empirical Methods in Natural Language Processing},
+booktitle= emnlp,
 year= 2014,
 address= {Doha, Qatar},
 month= oct,
 booktitlelink= {http://emnlp2014.org/}
 }
+
+@InProceedings{koehn07:moses,
+  title		= {{Moses: Open Source Toolkit for Statistical Machine
+		  Translation}},
+  author	= {Koehn, P. and Hoang, H. and Birch, A. and Callison-Burch, C.
+      and Federico, M. and Bertoldi, N. and Cowan, B. and Shen, W. and Moran,
+      C. and Zens, R. and Dyer, C. and Bojar, O. and Constantin, A. and Herbst,
+      E.},
+  booktitle	= acl,
+  pages		= {177--180},
+  address	= {Prague, Czech Republic},
+  month		= jun,
+  year		= {2007}
+}
+
+@InProceedings{koehn03:spb,
+  author	= "Philipp Koehn and Franz Joseph Och and Daniel Marcu",
+  title		= "{Statistical Phrase-Based Translation}",
+  booktitle	= hltnaacl,
+  pages		= "127--133",
+  year		= "2003",
+  address	= "Edmonton, Canada",
+  month		= may # "/"  # jun
+}
+
+@inproceedings{Galleyetal:04a,
+    author    = {Galley, Michel  and  Hopkins, Mark  and  Knight, Kevin  and  Marcu, Daniel},
+    title     = "{What's in a translation rule?}",
+    booktitle = hltnaacl,
+    year      = 2004,
+    month     = may,
+    address   = {Boston, MA, USA},
+    pages     = {273--280}
+}
+
+@inproceedings{Williams:2012:wmt,
+    author = {Williams, Philip and Koehn, Philipp},
+    title = "{GHKM Rule Extraction and Scope-3 Parsing in Moses}",
+    booktitle = wmt,
+    year = {2012},
+    address= {Montr{\'e}al, Canada},
+    month= jun,
+    pages = {388--394}
+} 
+
+@InProceedings{collins-koehn-kucerova:2005:ACL,
+  author    = {Collins, Michael  and  Koehn, Philipp  and  Kucerova, Ivona},
+  title     = "{Clause Restructuring for Statistical Machine Translation}",
+  booktitle = acl,
+  month     = {June},
+  year      = {2005},
+  address   = {Ann Arbor, MI, USA},
+  pages     = {531--540}
+}
+
+
