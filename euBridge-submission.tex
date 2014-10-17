@@ -98,8 +98,8 @@ Framework Programme (FP7)~\cite{eu:www-fp7} and brings together several project
 partners who have each previously been very successful in contributing to
 advancements in automatic speech recognition and statistical machine
 translation. A number of languages and language pairs (both well-covered and
-under-resourced ones) are tackled with ASR and MT technology with different use
-cases in mind.  
+under-resourced ones) are tackled with automatic speech recognition (ASR) and
+MT technology with different use cases in mind.  
 Four of the EU-BRIDGE project partners are particularly experienced in machine
 translation for European language pairs: RWTH Aachen University (RWTH), the
 University of Edinburgh (UEDIN), Karlsruhe Institute of Technology (KIT), and
@@ -115,7 +115,7 @@ translation which are developed as part of the project.
 
 In this work, we describe the EU-BRIDGE submissions to the 2014 IWSLT translation
 task. This year, we combined several single systems of RWTH, UEDIN, KIT, and FBK 
-for the German$\to$English SLT, German$\to$English MT, English$\to$German MT and English$\to$French MT tasks.
+for the German$\to$English SLT, German$\to$English MT, English$\to$German MT, and English$\to$French MT tasks.
 Additionally to the standard system combination pipeline
 presented in \cite{freitag14:jane,matusov:2006:eacl}, we applied a recurrent neural network 
 rescoring step \cite{sundermeyer14:bidirRNN} for the English$\to$French MT task.
@@ -211,7 +211,7 @@ of $M$ different models.
 \end{equation}
 
 The standard set of models is a word penalty, a 3-gram language
-model trained on the input hypotheses and for each system one binary voting feature.
+model trained on the input hypotheses, and for each system one binary voting feature.
 During decoding the binary voting feature for system $i$ ($1 \leq i \leq I$) is~1 iff the word is from system $i$, otherwise~0.
 The $M$ different model weights $\lambda_m$ are trained with MERT~\cite{och03:mer}.
 
@@ -289,7 +289,7 @@ Compared to the best individual system (RWTH), the system combination improved t
 
 \subsection{English$\to$French}
 
-For the English$\to$French MT task, we combined 5 different individual systems. FBK, KIT and RWTH provided one individual system output
+For the English$\to$French MT task, we combined 5 different individual systems. FBK, KIT, and RWTH provided one individual system output
 for the system combination. UEDIN added additional to their primary system, one advanced contrastive system. Experimental results are given in Table~\ref{tab:EnFrResults}. 
 The system combination of all 5 individual systems yield improvement of up to 0.6 points in \BLEU compared to the best RWTH individual system output.
 Using a recurrent neural network (RNN) language model to rescore a 1000-best list of the system combination output, leads to slight translation
