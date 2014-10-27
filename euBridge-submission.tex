@@ -21,6 +21,7 @@
 \newcommand{\rdmt}[1]{\edef\rounded{0}\FPeval\rounded{round(#1,\roundpositiont)}\rounded}
 \newcommand\BLEU{\textsc{Bleu}\xspace}
 \newcommand\TER{\textsc{Ter}\xspace}
+\newcommand\WER{\textsc{Wer}\xspace}
 \newcommand{\GIZA}{{GIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small\bf++}}\xspace}
 \newcommand{\todo}[1]{ \textcolor{red}{#1} } 
 
@@ -141,7 +142,104 @@ finally conclude the paper with Section~\ref{conclusion}.
 
 \section{RWTH Aachen University}
 \label{rwth}
+RWTH applied the identical training pipeline and models on both language pairs:
+The state-of-the-art phrase-based baseline systems were augmented with
+a hierarchical reordering model, several additional language models and 
+maximum expected \BLEU training for phrasal, lexical and reordering models.
+Further, RWTH employed rescoring with novel recurrent neural language and translation
+models. The same systems were used for the SLT track, where RWTH additionally performed
+punctuation prediction on the automatic transcriptions employing hierarchical
+phrase-based translation.
 
+Both the phrase-based and the hierarchical decoder are implemented in RWTH's publicly available
+translation toolkit Jane~\cite{vilar10:jane,wuebker12:jane}.
+The model weights of all systems were tuned with standard Minimum Error Rate
+Training~\cite{och03:mer} on the provided dev2012 set.
+RWTH used \BLEU as optimization objective.
+
+
+\subsection{Backoff language models}
+\label{sec:lms}
+
+Each translation system used three backoff language models
+that were estimated with the KenLM toolkit \cite{Heafield-estimate}:
+A large general domain 5-gram LM, an in-domain 5-gram LM and
+a 7-gram word class language model (wcLM).
+All of them used interpolated Kneser-Ney smoothing.
+For the general domain
+LM, RWTH first selected $\frac{1}{2}$ of the English Shuffled News,
+and $\frac{1}{4}$ of the French Shuffled News as well as both
+the English and French Gigaword corpora by the cross-entropy difference
+criterion described in \cite{moore:2010:dataselection}. The selection
+was then concatenated with all available remaining monolingual data
+and used to build and unpruned language model. The in-domain language
+models were estimated on the TED data only. For the word class LM,
+RWTH trained 200 classes on the target side of the bilingual training
+data using an in-house tool similar to \texttt{mkcls}. 
+With these class definitions, RWTH applied the technique shown in 
+\cite{wuebker13:wordClassModels} to compute the wcLM on the
+same data as the general-domain LM.
+
+\subsection{Maximum Expected \BLEU Training}                                                                                                                                                                       
+\label{sec:rprop}
+
+Discriminative training is a powerful method to learn a large number of features
+with respect to a given error metric. In this work RWTH learned three types of features
+under a maximum expected \BLEU objective \cite{he12:discr}.
+RWTH performed discriminative training on the TED portion of the data, which is
+high quality in-domain data of reasonable size. This makes training feasible
+while at the same time providing an implicit domain adaptation effect.
+Similar to \cite{he12:discr}, RWTH generated 100-best lists on the training data
+which were used as training samples for a gradient based update method.
+A leave-one-out heuristic \cite{wuebker2010:PhraseTraining} was applied to
+circumvent over-fitting. Here, RWTH followed an approach similar to
+\cite{auli14:expBleuReordering}, where each feature type was first discriminatively
+trained and then condensed into a single feature for the log-linear model combination
+and then optimized with MERT.
+In a first pass, RWTH simultaneously trained phrase pair features and phrase-internal
+word pair features, adding two models to the log-linear combination.
+Afterwards RWTH performed a second pass focusing on reordering,
+with the identical feature set as the HRM, resulting in an additional six models
+for log-linear combination: Three orientation classes (monotone, swap and discontinuous)
+in both directions.
+As the training procedure is iterative, RWTH selected the best iteration after performing
+MERT.
+
+
+\subsection{Recurrent Neural Network Models}
+\label{sec:rnn}
+
+All systems applied rescoring on 1000-best lists using recurrent language and translation models.
+The recurrency was handled with the long short-term memory (LSTM) architecture
+\cite{hochreiter97:lstm} and RWTH used a class-factored output layer for
+increased efficiency as described in \cite{sundermeyer12:lstm}.
+All neural networks were trained on the TED portion of the data with 2000 word classes.
+In addition to the recurrent language model (RNN-LM), RWTH applied the deep bidirectional word-based translation
+model (RNN-BTM) described in \cite{sundermeyer14:bidirRNN}. This requires a one-to-one
+word alignment, which was generated by introduction of $\epsilon$ tokens and
+using an IBM1 translation table. RWTH applied the \emph{bidirectional} version of
+the translation model, which uses both forward and backward recurrency in order to
+take the \emph{full source context} into account for each translation decision.
+The language models were set up with 300 nodes in both
+the projection and the hidden LSTM layer. For the BTM, RWTH used 200 nodes in all layers, namely
+the forward and backward projection layers, the first hidden layers for both forward and
+backward processing and the second hidden layer, which joins the output of the directional hidden layers.
+%The architecture of the BTM network is shown in Figure \ref{fig:btm}.
+
+\subsection{Spoken Language Translation (SLT)}
+\label{sec:slt}
+
+For the SLT tasks, RWTH reintroduced punctuation and case information before the actual translation similar to \cite{peitz:iwslt2011}.
+However, RWTH employed a hierarchical phrase-based system
+with a maximum of one nonterminal symbol per rule in place of a phrase-based system.
+A punctuation prediction system based on hierarchical translation is able to
+capture long-range dependencies between words and punctuation marks and is more
+robust for unseen word sequences.
+The model weights are tuned with standard MERT on 100-best
+lists. As optimization criterion RWTH used $F_{2}$-Score rather than \BLEU or \WER.
+
+Since punctuation predicting and recasing were applied before the actual translation,
+the final translation systems from the MT track could be kept completely unchanged.
 
 
 \section{University of Edinburgh}
