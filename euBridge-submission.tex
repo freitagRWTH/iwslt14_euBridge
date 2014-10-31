@@ -26,6 +26,20 @@
 \newcommand{\MGIZA}{{MGIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small\bf++}}\xspace}
 \newcommand{\todo}[1]{ \textcolor{red}{#1} } 
 
+\newenvironment{packed_itemize}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+\newenvironment{packed_descr}{
+\begin{description}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{-1pt}
+  \setlength{\parsep}{0pt}
+}{\end{description}}
+
 
 \title{Combined Spoken Language Translation}
 
@@ -265,7 +279,9 @@ alignments~\cite{och03:alignmentComparison,koehn03:spb}.
 The SRILM toolkit~\cite{stolcke02:srilm} was employed to create 5-gram language models
 with modified Kneser-Ney smoothing~\cite{chen98:aes}. UEDIN trained
 individual language models on each corpus and then interpolated them
-using weights tuned to minimize perplexity on a development set.
+using weights tuned to minimize perplexity on a development set. 
+%
+Phrase translation probabilities were smoothed with Good-Turing discounting.
 %
 Model weights for the log-linear model combination~\cite{och02:meForSMT} were
 optimized with batch MIRA~\cite{cherry:2012:bts} to maximize
@@ -309,11 +325,29 @@ lemmas, POS tags, and a source morphology tag to target POS tag model.
 \subsubsection{German$\to$English}
 
 Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting
-\cite{ref:koehn2003a} have been applied to the German source language side in a
-preprocessing step.  A factored translation model \cite{koehn2012factor} has
-been employed. Source side factors are word, lemma, part-of-speech tag, and
+\cite{ref:koehn2003a} were applied to the German source language side in a
+preprocessing step.  A factored translation model \cite{koehn2012factor} was
+employed. Source side factors are word, lemma, part-of-speech tag, and
 morphological tag. Target side factors are word, lemma, and part-of-speech tag.
 A concatenation of dev2010 and dev2012 was utilized as development set.
+
+Standard features of the German$\to$English MT system include:
+\begin{packed_itemize}
+\item Phrase translation and lexical translation scores
+\item Word penalty and phrase penalty
+\item Six simple count-based binary features
+\item Distance-based distortion cost
+\item A hierarchical lexicalized reordering model~\cite{galley-manning:2008:EMNLP} 
+\end{packed_itemize}
+
+UEDIN moreover incorporated several advanced features, in particular:
+\begin{packed_itemize}
+\item A 7-gram LM over POS tags (trained on WIT$^3$ only)
+\item A 7-gram LM over lemmas (trained on WIT$^3$ only)
+\item OSMs over different word representations~\cite{durrani-EtAl:2014:Coling} 
+\item Sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2}
+\end{packed_itemize}
+
 
 \subsubsection{English$\to$French}
 

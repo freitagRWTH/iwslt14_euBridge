@@ -21,6 +21,8 @@
 		  Translation (WMT)}" }
 @STRING{icslp	= "{Proc.~of the Int.\ Conf.\ on Spoken Language Processing
 		  (ICSLP)}" }
+@STRING{iwslt	= "{Proc.~of the Int.~Workshop on Spoken Language Translation
+		  (IWSLT)}" }
 
 @InProceedings{	  banerjee05:maa,
   author	= "Satanjeev Banerjee and Alon Lavie",
@@ -137,9 +139,9 @@
 @inproceedings{ref:cho, 
  author = {Cho, Eunah and Niehues, Jan and Waibel, Alex}, 
  title = {{S}egmentation and {P}unctuation {P}rediction in {S}peech {L}anguage {T}ranslation using a {M}onolingual {T}ranslation {S}ystem}, 
- booktitle = {Proceedings of the Ninth International Workshop on Spoken Language Translation (IWSLT)},
- adress = {Hong Kong},
-  year={2012}
+ booktitle = iwslt,
+ address = {Hong Kong},
+ year={2012}
 }
 @inproceedings{ref:venugopal2005,
 author = {Ashish Venugopal and Andreas Zollman and Alex Waibel}, 
@@ -158,7 +160,7 @@ address = {Ann Arbor, Michigan, USA},
 @inproceedings{ref:mediani2011,
   title={The {KIT} {E}nglish-{F}rench {T}ranslation systems for {IWSLT} 2011},
   author={Mediani, Mohammed and Cho, Eunah and Niehues, Jan and Herrmann, Teresa and Waibel, Alex},
-  booktitle ={Proceedings of the Eight International Workshop on Spoken Language Translation (IWSLT)},
+  booktitle = iwslt,
   address = {San Francisco, CA, USA},
   year={2011}
 }
@@ -220,7 +222,7 @@ address   = {Altanta, GA, USA},
 @inproceedings{ref:koehn2005,
   author =        {Philipp Koehn and Amittai Axelrod and Alexandra B. Mayne and Chris Callison-Burch and Miles Osborne and David Talbot},
   title =         {{E}dinburgh {S}ystem {D}escription for the 2005 {IWSLT} {S}peech {T}ranslation {E}valuation},
-  booktitle =     {Proceedings of the International Workshop on Spoken Language Translation (IWSLT)},
+  booktitle =     iwslt,
   year =          {2005},
   address =       {Pittsburgh, PA, USA},
 }
@@ -444,9 +446,9 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=82
     author= {Peitz, Stephan and Freitag, Markus and Mauser, Arne and Ney, Hermann},
     title= "{Modeling Punctuation Prediction as Machine Translation}",
     year= 2011,
-    address= {San Francisco, CA},
+    address= {San Francisco, CA, USA},
     month= dec,
-    booktitle = {Proceedings of the International Workshop on Spoken Language Translation (IWSLT)},
+    booktitle = iwslt,
 }
 
 @article{hochreiter97:lstm,
@@ -622,5 +624,36 @@ pages = {40--48},
   year		= "2002",
   address	= "Philadelphia, PA, USA",
   month		= jul
+}
+
+@InProceedings{iwslt12:hasler-2,
+  author	= {Eva Hasler and Barry Haddow and Philipp Koehn},
+  title		= "{Sparse Lexicalised Features and Topic Adaptation for
+		  SMT}",
+  pages		= {268--275},
+  booktitle	= iwslt,
+  address	= {Hong Kong},
+  year		= 2012,
+  month		= dec
+}
+
+@InProceedings{galley-manning:2008:EMNLP,
+    author    = {Galley, Michel  and  Manning, Christopher D.},
+    title     = {{A Simple and Effective Hierarchical Phrase Reordering Model}},
+    booktitle = emnlp,
+    month     = oct,
+    year      = {2008},
+    address   = {Honolulu, HI, USA},
+    pages     = {847--855}
+}
+
+@InProceedings{durrani-EtAl:2014:Coling,
+  author    = {Durrani, Nadir  and  Koehn, Philipp  and  Schmid, Helmut  and  Fraser, Alexander},
+  title     = "{Investigating the Usefulness of Generalized Word Representations in SMT}",
+  booktitle = "{Proceedings of COLING 2014, the 25th International Conference on Computational Linguistics: Technical Papers}",
+  month     = aug,
+  year      = {2014},
+  address   = {Dublin, Ireland},
+  pages     = {421--432}
 }
 
