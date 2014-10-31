@@ -23,6 +23,7 @@
 \newcommand\TER{\textsc{Ter}\xspace}
 \newcommand\WER{\textsc{Wer}\xspace}
 \newcommand{\GIZA}{{GIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small\bf++}}\xspace}
+\newcommand{\MGIZA}{{MGIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small\bf++}}\xspace}
 \newcommand{\todo}[1]{ \textcolor{red}{#1} } 
 
 
@@ -250,6 +251,26 @@ toolkit~\cite{koehn07:moses}. UEDIN set up phrase-based systems
 additionally a string-to-tree syntax-based system
 \cite{Galleyetal:04a,Williams:2012:wmt} for the English$\to$German MT task.
 
+The UEDIN systems were trained using monolingual and parallel data from
+WIT$^3$~\cite{WIT3:2012}, Europarl~\cite{koehn:2005:mtsummit},
+Multi\-UN~\cite{eisele:2010:multiun}, the English and French Gigaword corpora
+as provided by the Linguistic Data Consortium~\cite{ldc:www}, and the News
+Crawl, $10^9$, and News Commentary corpora from the WMT shared task training
+data~\cite{wmt:www-14-task}.
+%
+Word alignments were created by aligning the data in both directions with
+\MGIZA~\cite{Gao:2008:MGIZA} and symmetrizing the two trained
+alignments~\cite{och03:alignmentComparison,koehn03:spb}.
+%
+The SRILM toolkit~\cite{stolcke02:srilm} was employed to create 5-gram language models
+with modified Kneser-Ney smoothing~\cite{chen98:aes}. UEDIN trained
+individual language models on each corpus and then interpolated them
+using weights tuned to minimize perplexity on a development set.
+%
+Model weights for the log-linear model combination~\cite{och02:meForSMT} were
+optimized with batch MIRA~\cite{cherry:2012:bts} to maximize
+\BLEU~\cite{papineni02:bam}.
+
 \subsection{Spoken Language Translation System}
 \label{uedin:slt}
 
@@ -263,7 +284,7 @@ of the main stylistic differences. Previous research \cite{Matusov:2006:IWSLT,pe
 suggests that it is preferrable to punctuate the text before translation, which is
 what we did by training a translation system on the German side of our parallel data.
 The ``source language'' of the system had punctuation
-and capitalisation stripped, and the ``target language'' was the standard German parallel text.
+and capitalization stripped, and the ``target language'' was the standard German parallel text.
 We used 4.6 million sentences of parallel
 data from Europarl, WIT, New Commentary, and the UN corpora for both this punctuation model and the subsequent translation model.
 Our handling of punctuation is similar to the other groups in this paper, however we used a phrase-based
@@ -284,6 +305,7 @@ lemmas, POS tags, and a source morphology tag to target POS tag model.
 
 \subsection{Edinburgh's MT Systems}
 
+
 \subsubsection{German$\to$English}
 
 Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting
@@ -291,8 +313,7 @@ Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting
 preprocessing step.  A factored translation model \cite{koehn2012factor} has
 been employed. Source side factors are word, lemma, part-of-speech tag, and
 morphological tag. Target side factors are word, lemma, and part-of-speech tag.
-Weights for the log-linear model combination have been tuned on a concatenation
-of the dev2010 and dev2012 sets.
+A concatenation of dev2010 and dev2012 was utilized as development set.
 
 \subsubsection{English$\to$French}
 
