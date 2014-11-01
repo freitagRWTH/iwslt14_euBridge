@@ -241,7 +241,6 @@ lists. As optimization criterion RWTH used $F_{2}$-Score rather than \BLEU or \W
 Since punctuation predicting and recasing were applied before the actual translation,
 the final translation systems from the MT track could be kept completely unchanged.
 
-
 \section{University of Edinburgh}
 \label{uedin}
 
@@ -251,13 +250,39 @@ toolkit~\cite{koehn07:moses}. UEDIN set up phrase-based systems
 additionally a string-to-tree syntax-based system
 \cite{Galleyetal:04a,Williams:2012:wmt} for the English$\to$German MT task.
 
-\subsection{Edinburgh's SLT System}
+\subsection{Spoken Language Translation System}
 \label{uedin:slt}
 
-% TODO: @Lexi
+We trained a phrase-based German$\to$English SLT system for this system combination paper.
+
+One of the main challenges of spoken language translation is to overcome the
+mismatch in the style of data that the speech recognition systems output, and the
+written text that is used to train the translation model. ASR system output lacks punctuation and
+capitalisation and this is one
+of the main stylistic differences. Previous research \cite{Matusov:2006:IWSLT,peitz:iwslt2011,ref:cho}
+suggests that it is preferrable to punctuate the text before translation, which is
+what we did by training a translation system on the German side of our parallel data.
+The ``source language'' of the system had punctuation
+and capitalisation stripped, and the ``target language'' was the standard German parallel text.
+We used 4.6 million sentences of parallel
+data from Europarl, WIT, New Commentary, and the UN corpora for both this punctuation model and the subsequent translation model.
+Our handling of punctuation is similar to the other groups in this paper, however we used a phrase-based
+model with no distortion or reordering, and we tuned the model to the ASR input text using
+batch mira and the BLEU score.
+
+Our translation system applied an operation sequence model (OSM) over the basic phrase-based decoding
+model~\cite{durrani-EtAl:2013:Short,durrani-EtAl:2013:NAACL}. OSM  addresses the problem of the
+phrasal independence assumption since the model considers context beyond phrasal boundaries.
+The OSM model represents a bilingual sentence
+pair and its alignment through a sequence of operations that generate the aligned sentence pair. An
+operation either generates source and target words
+or it performs reordering by inserting gaps and
+jumping forward and backward. It has shown to improve performance over many language pairs, and
+to help even more when sequence models are applied over more general factors such as POS tags and
+Brown clusters~\cite{birch-etal:2013:IWSLT}. For this experiment we applied OSM models over words,
+lemmas, POS tags, and a source morphology tag to target POS tag model.
 
 \subsection{Edinburgh's MT Systems}
-\label{uedin:mt}
 
 \subsubsection{German$\to$English}
 
