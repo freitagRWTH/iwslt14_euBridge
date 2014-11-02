@@ -10,6 +10,8 @@
 		  Evaluation Measures for MT and/or Summarization}" }
 @STRING{amta	= "{Proc.\ of the Conf.\ of the Assoc.~for Machine Translation in the
 		  Americas (AMTA)}" }
+@STRING{coling12= "{COLING '12: The 24th Int.\ Conf.\ on Computational
+		  Linguistics}" }
 @STRING{eacl	= "{Proc.\ of the Conf.\ of the European Chapter of the
 		  Assoc.~for Computational Linguistics (EACL)}" }
 @STRING{emnlp	= "{Proc.\ of the Conf.\ on Empirical Methods for Natural
@@ -354,15 +356,17 @@ booktitlelink= {http://emnlp2014.org/}
     pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=666&row=pdf}
 }
 
-@InProceedings{wuebker12:jane,                                                                                                                                                                                     
-    author= {Wuebker, Joern and Huck, Matthias and Peitz, Stephan and Nuhn, Malte and Freitag, Markus and Peter, Jan-Thorsten and Mansour, Saab and Ney, Hermann},
-    title= {Jane 2: Open Source Phrase-based and Hierarchical Statistical Machine Translation},
-    booktitle= {International Conference on Computational Linguistics},
-    year= 2012,
-    address= {Mumbai, India},
-    month= dec,
-    note= {To appear},
-    booktitlelink= {http://www.coling2012-iitb.org/}
+@InProceedings{	  wuebker12:jane,
+  author	= {Wuebker, Joern and Huck, Matthias and Peitz, Stephan and
+		  Nuhn, Malte and Freitag, Markus and Peter, Jan-Thorsten and
+		  Mansour, Saab and Ney, Hermann},
+  title		= {{Jane 2: Open Source Phrase-based and Hierarchical
+		  Statistical Machine Translation}},
+  booktitle	= coling12,
+  year		= 2012,
+  pages		= {483--491},
+  address	= {Mumbai, India},
+  month		= dec
 }
 
 @inproceedings{Heafield-estimate,                                                                                                                                                                                  
@@ -656,5 +660,47 @@ pages = {40--48},
   year		= "2013",
   address	= "Atlanta, GA, USA",
   month		= jun
+}
+
+@InProceedings{williams-uedinsyntaxwmt14,
+  author	= {Philip Williams and Rico Sennrich and Maria Nadejde and
+		  Matthias Huck and Eva Hasler and Philipp Koehn},
+  title		= "{Edinburgh's Syntax-Based Systems at WMT~2014}",
+  year		= {2014},
+  month		= {June},
+  booktitle	= wmt,
+  address	= {Baltimore, MD, USA},
+  pages     = "207–-214",
+}
+
+@InProceedings{	  schmid2004bitpar,
+  address	= "Geneva, Switzerland",
+  author	= "Schmid, Helmut",
+  booktitle	= "{Proc.\ of the Int.\ Conf.\ on Computational Linguistics
+		  (COLING)}",
+  title		= "{Efficient Parsing of Highly Ambiguous Context-Free
+		  Grammars with Bit Vectors}",
+  year		= 2004,
+  month		= aug
+}
+
+@InProceedings{huck-hoang-koehn:2014:W14-33,
+  author    = {Huck, Matthias  and  Hoang, Hieu  and  Koehn, Philipp},
+  title     = "{Augmenting String-to-Tree and Tree-to-String Translation with Non-Syntactic Phrases}",
+  booktitle = wmt,
+  month     = {June},
+  year      = {2014},
+  address   = {Baltimore, MD, USA},
+  pages     = {486--498}
+}
+
+@InProceedings{huck-hoang-koehn:2014:SSST-8,
+  author    = {Huck, Matthias  and  Hoang, Hieu  and  Koehn, Philipp},
+  title     = "{Preference Grammars and Soft Syntactic Constraints for GHKM Syntax-based Statistical Machine Translation}",
+  booktitle = {Proceedings of SSST-8, Eighth Workshop on Syntax, Semantics and Structure in Statistical Translation},
+  month     = oct,
+  year      = {2014},
+  address   = {Doha, Qatar},
+  pages     = {148--156}
 }
 

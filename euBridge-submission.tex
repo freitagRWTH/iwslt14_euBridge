@@ -110,7 +110,8 @@ compared to the best individual system.
 \label{introduction}
 
 The EU-BRIDGE project is funded by the European Union under the Seventh
-Framework Programme (FP7)~\cite{eu:www-fp7} and brings together several project
+Framework Programme (FP7) %~\cite{eu:www-fp7} 
+and brings together several project
 partners who have each previously been very successful in contributing to
 advancements in automatic speech recognition and statistical machine
 translation. A number of languages and language pairs (both well-covered and
@@ -345,14 +346,11 @@ was employed. Source side factors are word, lemma, part-of-speech (POS) tag, and
 morphological tag. Target side factors are word, lemma, and POS tag.
 %
 %In addition to the features listed above, 
-UEDIN incorporated several additional
-features into the German$\to$English MT system, in particular:
-\begin{packed_itemize}
-\item A 7-gram LM over POS tags (trained on WIT$^3$ only)
-\item A 7-gram LM over lemmas (trained on WIT$^3$ only)
-\end{packed_itemize}
+UEDIN incorporated two additional LMs into the German$\to$English MT system:
+a 7-gram LM over POS tags (trained on WIT$^3$ only) and
+a 7-gram LM over lemmas (trained on WIT$^3$ only).
 %
-\noindent Model weights were optimized on a concatenation of dev2010 and dev2012.
+Model weights were optimized on a concatenation of dev2010 and dev2012.
 
 
 \subsubsection{English$\to$French MT}
@@ -361,30 +359,23 @@ UEDIN contributed two phrase-based systems for the English$\to$French EU-BRIDGE 
 The system denoted as UEDIN-A  was trained without the Multi\-UN and $10^9$ corpora, the system denoted as UEDIN-B was trained with all corpora.
 %
 %Additional features of the UEDIN English$\to$French MT systems are:
-Additional features of the systems are:
-\begin{packed_itemize}
-\item LMs over Brown clusters \\(UEDIN-A: 7-gram, UEDIN-B: 5-gram)
-\end{packed_itemize}
+An additional features incorporated into the systems is an LM over Brown clusters (UEDIN-A: 7-gram, UEDIN-B: 5-gram).
 %
-\noindent Model weights were optimized on dev2010.
+Model weights were optimized on dev2010.
 
 \subsubsection{English$\to$German MT}
 
 UEDIN contributed two phrase-based systems (UEDIN-A and UEDIN-B) and a syntax-based system (UEDIN-C) for English$\to$German MT.
 
-\noindent \textit{Phrase-based systems.} UEDIN-A and UEDIN-B employ factored models. Source side factors are word, POS tag, and Brown cluster (2000 classes). Target side factors are word, POS tag, Brown cluster (2000 classes), and morphological tag. UEDIN-A was trained with all corpora, whereas for UEDIN-B the parallel training data was restricted to the in-domain WIT$^3$ corpus. 
+\textit{Phrase-based systems.} UEDIN-A and UEDIN-B employ factored models. Source side factors are word, POS tag, and Brown cluster (2000 classes). Target side factors are word, POS tag, Brown cluster (2000 classes), and morphological tag. UEDIN-A was trained with all corpora, whereas for UEDIN-B the parallel training data was restricted to the in-domain WIT$^3$ corpus. 
 %
-Additional features of the systems are:
-\begin{packed_itemize}
-\item A 5-gram LM over Brown clusters
-\item LMs over morphological tags \\(UEDIN-A: 7-gram trained on all data, \\UEDIN-B: 7-gram trained on WIT$^3$)
-\item A 7-gram LM over POS tags (UEDIN-A)
-\end{packed_itemize}
+Additional features of the systems are: a 5-gram LM over Brown clusters, a 7-gram LM over morphological tags (UEDIN-A: trained on all data, UEDIN-B: trained on WIT$^3$ only), and a 7-gram LM over POS tags (UEDIN-A, not UEDIN-B).
+%
+Model weights of UEDIN-B were optimized on dev2010, model weights of UEDIN-A on a concatenation of dev2010 and dev2012.
 
-\noindent Model weights of UEDIN-B were optimized on dev2010, model weights of UEDIN-A on a concatenation of dev2010 and dev2012.
-
-
-\noindent \textit{Syntax-based system.}
+\textit{Syntax-based system.} UEDIN-C is a string-to-tree translation system with similar features as the ones described in~\cite{williams-uedinsyntaxwmt14}. The target-side data was parsed with BitPar \cite{schmid2004bitpar}, and right-binarization was applied to the parse trees. The system was adapted to the TED domain by extracting separate rule tables (from the WIT$^3$ corpus and from the rest of the parallel data) and merging them with a fill-up technique~\cite{iwslt11:Bisazza}. Augmenting the system with non-syntactic phrases~\cite{huck-hoang-koehn:2014:W14-33} and adding soft source syntactic constraints~\cite{huck-hoang-koehn:2014:SSST-8} yielded further improvements.
+%
+Model weights of UEDIN-C were optimized on a concatenation of dev2010 and dev2012.
 
 
 \section{Karlsruhe Institute of Technology}
@@ -420,7 +411,7 @@ We optimize the log-linear combination of all these models on the provided devel
 \label{fig:syscomStructure}
 \end{figure*}
 
-In this section, we will give a short re-introduction of confusion network system combination.
+In this section, we give a brief re-introduction of confusion network system combination.
 System combination is used to produce consensus translations from multiple
 hypotheses which are outputs of different translation engines. The consensus
 translations can be better in terms of translation quality than any of the
