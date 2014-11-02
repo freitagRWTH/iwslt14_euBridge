@@ -241,7 +241,7 @@ the forward and backward projection layers, the first hidden layers for both for
 backward processing and the second hidden layer, which joins the output of the directional hidden layers.
 %The architecture of the BTM network is shown in Figure \ref{fig:btm}.
 
-\subsection{Spoken Language Translation (SLT)}
+\subsection{Spoken Language Translation}
 \label{sec:slt}
 
 For the SLT tasks, RWTH reintroduced punctuation and case information before the actual translation similar to \cite{peitz:iwslt2011}.
@@ -272,16 +272,27 @@ as provided by the Linguistic Data Consortium~\cite{ldc:www}, and the News
 Crawl, $10^9$, and News Commentary corpora from the WMT shared task training
 data~\cite{wmt:www-14-task}.
 %
-Word alignments were created by aligning the data in both directions with
-\MGIZA~\cite{Gao:2008:MGIZA} and symmetrizing the two trained
-alignments~\cite{och03:alignmentComparison,koehn03:spb}.
+Word alignments for the MT track systems were created by aligning the data in both
+directions with \MGIZA~\cite{Gao:2008:MGIZA} and symmetrizing the two trained
+alignments~\cite{och03:alignmentComparison,koehn03:spb}. 
+Word alignments for the SLT track system were created using
+fast\_align~\cite{dyer13:fast_align}.
 %
-The SRILM toolkit~\cite{stolcke02:srilm} was employed to create 5-gram language models
+The SRILM toolkit~\cite{stolcke02:srilm} was employed to train 5-gram language models
 with modified Kneser-Ney smoothing~\cite{chen98:aes}. UEDIN trained
 individual language models on each corpus and then interpolated them
 using weights tuned to minimize perplexity on a development set. 
-%
-Phrase translation probabilities were smoothed with Good-Turing discounting.
+
+Common features included in the UEDIN phrase-based systems are:
+\begin{packed_itemize}
+\item Phrase translation scores in both directions, \\smoothed with Good-Turing discounting
+\item Lexical translation scores in both directions
+\item Word and phrase penalties
+\item Six simple count-based binary features
+\item Distance-based distortion cost
+\item A hierarchical lexicalized reordering model~\cite{galley-manning:2008:EMNLP} 
+\item Sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2}
+\end{packed_itemize}
 %
 Model weights for the log-linear model combination~\cite{och02:meForSMT} were
 optimized with batch MIRA~\cite{cherry:2012:bts} to maximize
@@ -329,31 +340,35 @@ Pre-reordering \cite{collins-koehn-kucerova:2005:ACL} and compound splitting
 preprocessing step.  A factored translation model \cite{koehn2012factor} was
 employed. Source side factors are word, lemma, part-of-speech tag, and
 morphological tag. Target side factors are word, lemma, and part-of-speech tag.
-A concatenation of dev2010 and dev2012 was utilized as development set.
 
-Standard features of the German$\to$English MT system include:
-\begin{packed_itemize}
-\item Phrase translation and lexical translation scores
-\item Word penalty and phrase penalty
-\item Six simple count-based binary features
-\item Distance-based distortion cost
-\item A hierarchical lexicalized reordering model~\cite{galley-manning:2008:EMNLP} 
-\end{packed_itemize}
-
-UEDIN moreover incorporated several advanced features, in particular:
+%In addition to the features listed above, 
+UEDIN incorporated several additional
+features into the German$\to$English MT system, in particular:
 \begin{packed_itemize}
 \item A 7-gram LM over POS tags (trained on WIT$^3$ only)
 \item A 7-gram LM over lemmas (trained on WIT$^3$ only)
 \item OSMs over different word representations~\cite{durrani-EtAl:2014:Coling} 
-\item Sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2}
 \end{packed_itemize}
+
+\noindent A concatenation of dev2010 and dev2012 was utilized as development set.
 
 
 \subsubsection{English$\to$French}
 
+UEDIN contributed two phrase-based systems for the English$\to$French EU-BRIDGE system combination. Both comprise Brown clusters with 200 classes as additional factors on source and target side.
+The system denoted as UEDIN-A  was trained without the Multi\-UN and $10^9$ corpora, the system denoted as UEDIN-B  was trained with all corpora.
+
+Additional features of the UEDIN English$\to$French MT systems are:
+\begin{packed_itemize}
+\item LMs over Brown clusters \\(UEDIN-A: 7-gram, UEDIN-B: 5-gram)
+\item OSMs over words and over Brown clusters
+\end{packed_itemize}
+
+\noindent Model weights were tuned on dev2010.
+
 \subsubsection{English$\to$German}
 
-\noindent \textit{Phrase-based system.}
+\noindent \textit{Phrase-based systems.}
 
 \noindent \textit{Syntax-based system.}
 
