@@ -2,7 +2,7 @@ The FBK system was built upon a standard phrase-based system using the Moses too
 %
 It featured a statistical log-linear model including a phrase-based translation model (TM) and lexicalized phrase-based reordering models (RM), two French language models (LMs), as well as distortion, word and phrase penalties.
 %
-Tuning of the system was performed on dev2010 by optimizing BLEU using Minimum Error Rate Training \cite{och03:mer}.
+Tuning of the system was performed on dev2010 by optimizing \BLEU using Minimum Error Rate Training \cite{och03:mer}.
 %
 It is worth noticing that all available development data sets, namely dev2010 and test2010-2012, were added to the in-domain training data to build the system actually employed for the 2014 evaluation campaign.
 
@@ -18,7 +18,7 @@ The back-off table combination is similar to the fill-up technique  \cite{iwslt1
 
 The French side of in-domain and selected data were also employed to estimate a 2-component mixture language model \cite{Federico:98}. Moreover, a second huge French LM was estimated on all permitted monolingual French data consisting of $\sim$1.4G running words, as a mixture of 8 components. 
 %
-Both LMs have order 5 and were smoothed by means of the interpolated Improved Kneser-Ney method \cite{Chen:98a}; they include 57M and 661M 5-grams, respectively.
+Both LMs have order 5 and were smoothed by means of the interpolated Improved Kneser-Ney method \cite{chen98:aes}; they include 57M and 661M 5-grams, respectively.
 %
 A full description of the system can be found in the FBK system paper.
 
