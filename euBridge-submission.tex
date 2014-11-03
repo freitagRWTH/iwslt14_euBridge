@@ -191,7 +191,7 @@ was then concatenated with all available remaining monolingual data
 and used to build and unpruned LM. The in-domain language
 models were estimated on the TED data only. For the word class LM,
 RWTH trained 200 classes on the target side of the bilingual training
-data using an in-house tool similar to \texttt{mkcls}. 
+data using an in-house tool similar to \texttt{mkcls}~\cite{mkcls}. 
 With these class definitions, RWTH applied the technique shown in 
 \cite{wuebker13:wordClassModels} to compute the wcLM on the
 same data as the general-domain LM.
@@ -451,7 +451,7 @@ better model the sentence structure using a class-based LM.  For the
 German$\to$English task, KIT used one LM trained on all data, an in-domain LM
 trained only on the WIT$^3$ corpus, and one LM trained on 5M sentences selected
 using cross-entropy difference~\cite{moore:2010:dataselection}. As classes KIT
-used the clusters obtained using the MKCLS~\cite{mkcls} algorithm on the
+used the clusters obtained using the \texttt{mkcls} algorithm on the
 WIT$^3$ corpus. For German$\leftrightarrow$ English, KIT used a 9-gram LM
 with 100 or 1000 clusters and for the English$\to$French MT task,  a
 cluster-based 4-gram LM was trained on 500 clusters. For English$\to$German, KIT
