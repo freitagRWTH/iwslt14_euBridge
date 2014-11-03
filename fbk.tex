@@ -1,37 +1,20 @@
-\def\wit3{{\scshape WIT$^{\bf 3}$}}
+The FBK system was built upon a standard phrase-based system using the Moses toolkit \cite{koehn07:moses}, and exploited the huge amount of parallel English-French and monolingual French training data provided by the organizers.
+%
+It featured a statistical log-linear model including a phrase-based translation model  and lexicalized reordering models (RMs), two French language models (LMs), as well as distortion, word and phrase penalties.
+%
+Tuning of the system was performed on dev2010 by optimizing BLEU using Minimum Error Rate Training \cite{och03:mer}.
 
-The FBK component of the system combination corresponds to the Òcontrastive XXXÓ system of the official FBK submission to the MT track.
-The FBK system was built upon a standard phrase-based system using the Moses toolkit \cite{koehn07:moses}, and exploited the huge amount of parallel English-French and monolingual French training data provided by the organizers.
+It is worth noticing that all available development data sets, namely dev2010 and test2010-2012, were added to the in-domain training data to build the system actually employed for the 2014 evaluation campaign.
 
+In order to adapt the system on TED specific domain and genre, and to reduce the size of the system, data selection was carried out on all parallel English-French corpora, using all WIT$^3$ training corpus as in-domain data.
 
+Data selection was performed by means of XenC toolkit \cite{Rousseau:2013:pbml} exploiting the bilingual cross-entropy difference \cite{axelrod-he-gao:2011:EMNLP} mode, separately for each available training corpora, but the in-domain WIT$^3$ data.
+%
+Different amount of texts were selected from each corpora ranging from 2\% and 30\%, and then concatenating for building one parallel corpus containing 57M English and 63M French running words in total.
 
+Two TMs and two RMs were trained on the parallel in-domain and selected data, respectively, and combined using the back-off technique (for both TM and RM), taking WIT$^3$ as primary component, for a total of 168M phrase pairs.
+Back-off table combination is similar to the fill-up technique  \cite{Bisazza:11b}, but does not add any provenance binary features.
+The French side of in-domain and selected data were also employed to estimate a mixture language model \cite{Federico:98}. Moreover, a second huge French LM was estimated on all permitted monolingual French data consisting of about 1.4G running words. 
+%
+Both LMs have order 5 and were smoothed by means of the interpolated Improved Kneser-Ney method \cite{Chen:98a}; they include 57M and 661M 5-grams, respectively.
 
-It featured a statistical log-linear model including a XXXX phrase translation model \cite{Bisazza:11b} and lexicalized reordering models (RMs), two French language models (LMs), as well as distortion, word and phrase penalties. 
-
-In order to adapt the system on TED specific domain and genre, and to reduce the size of the system, data selection was carried out on all parallel English-French corpora, using the WIT3 training data as in-domain data.
-
-Data selection was performed by means of XenC toolkit (\cite{}) exploiting the parallel xxx-modality (mode=3) and xxx-grams
-separately for each available training corpora but the WIT3 data.
-
-namely the data selection tool XenC \cite{Rousseau:2013:pbml}
-
-It assumes the availability of a {\em seed} corpus, that in our case is  representative of the specific domain or project, and of a large generic corpus, from where to extract task-relevant sentences.  The XenC tools provides three modes to perform data selection:
-\begin{description}
-  \item[mode 1] implements a simple filtering process based on direct perplexity computation \cite{Gao:02}.
-  \item[mode 2] monolingual cross-entropy difference~\cite{Moore:acl10}.
-  \item[mode 3] bilingual cross-entropy difference \cite{axelrod-he-gao:2011:EMNLP}.
-\end{description}
-
-We used the modes 2 and 3. In the second mode each word sequence $s$ is scored with the difference of the cross-entropy computed on two LMs.
-The first LM is estimated from the whole task-specific corpus, while the second LM is estimated from a random subset of the generic corpus, with a number of tokens similar to the specific one.
-
-
- different amount of data are selected ranging from 
-for a total of 66M English running words.
-
-Two TMs and two RMs were trained on WIT3 and selected data, separately, and combined using the fill-up (for TM) and backoff (for RM) techniques, using WIT3 as primary component.
-The French side of WIT3 and selected data were employed to estimate a mixture language model [58]. A second huge French LM was estimated on the monolingual French available data of about 2.4G running words. 
-
-Both LMs have order five and were smoothed by means of the interpolated Improved Kneser-Ney method [59]; the second LM was also pruned-out of singleton n-gram (n>2).
-
-Tuning of the system was performed on dev2010 by optimizing BLEU using Minimum Error Rate Training [20]. It is worth noticing that the dev2010 and test2010 data were added to the training data in order to build the system actually employed.
