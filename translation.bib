@@ -28,6 +28,8 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 		  Evaluation Measures for MT and/or Summarization}" }
 @STRING{amta	= "{Proc.\ of the Conf.\ of the Assoc.~for Machine Translation in the
 		  Americas (AMTA)}" }
+@STRING{coling12= "{COLING '12: The 24th Int.\ Conf.\ on Computational
+		  Linguistics}" }
 @STRING{eacl	= "{Proc.\ of the Conf.\ of the European Chapter of the
 		  Assoc.~for Computational Linguistics (EACL)}" }
 @STRING{emnlp	= "{Proc.\ of the Conf.\ on Empirical Methods for Natural
@@ -37,6 +39,10 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 		  Linguistics (HLT-NAACL)}" }
 @STRING{wmt	= "{Proc.~of the Workshop on Statistical Machine
 		  Translation (WMT)}" }
+@STRING{icslp	= "{Proc.~of the Int.\ Conf.\ on Spoken Language Processing
+		  (ICSLP)}" }
+@STRING{iwslt	= "{Proc.~of the Int.~Workshop on Spoken Language Translation
+		  (IWSLT)}" }
 
 @InProceedings{	  banerjee05:maa,
   author	= "Satanjeev Banerjee and Alon Lavie",
@@ -50,8 +56,7 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 }
 
 @Misc{		  eu:www-fp7,
-  author	= "{European Commission Community Research and Development
-		  Infomation Service (CORDIS)}",
+  author	= "{European Commission Community Research and Development Information Service (CORDIS)}",
   title		= "{Seventh Framework Programme (FP7)}",
   note		= "\url{http://cordis.europa.eu/fp7/}"
 }
@@ -122,11 +127,10 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 		  Durrani, Nadir and Nadejde, Maria and Williams, Philip and
 		  Koehn, Philipp and Herrmann, Teresa and Cho, Eunah and
 		  Waibel, Alex},
-  title		= {EU-BRIDGE MT: Combined Machine Translation},
-  booktitle	= {ACL 2014 Ninth Workshop on Statistical Machine
-		  Translation},
+  title		= "{EU-BRIDGE MT: Combined Machine Translation}",
+  booktitle	= wmt,
   year		= 2014,
-  pages		= {105-113},
+  pages		= {105--113},
   address	= {Baltimore, MD, USA},
   month		= jun,
   booktitlelink	= {http://www.statmt.org/wmt14/},
@@ -140,11 +144,10 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 		  Mediani, Mohammed and Herrmann, Teresa and Waibel, Alex and
 		  Bertoldi, Nicola and Cettolo, Mauro and Federico,
 		  Marcello},
-  title		= {EU-BRIDGE MT: Text Translation of Talks in the EU-BRIDGE
-		  Project},
-  booktitle	= {International Workshop on Spoken Language Translation},
+  title		= "{EU-BRIDGE MT: Text Translation of Talks in the EU-BRIDGE Project}",
+  booktitle	= iwslt,
   year		= 2013,
-  pages		= {128-135},
+  pages		= {128--135},
   address	= {Heidelberg, Germany},
   month		= dec,
   booktitlelink	= {http://www.iwslt2013.org/},
@@ -153,9 +156,9 @@ i@InProceedings{axelrod-he-gao:2011:EMNLP,
 @inproceedings{ref:cho, 
  author = {Cho, Eunah and Niehues, Jan and Waibel, Alex}, 
  title = {{S}egmentation and {P}unctuation {P}rediction in {S}peech {L}anguage {T}ranslation using a {M}onolingual {T}ranslation {S}ystem}, 
- booktitle = {Proceedings of the Ninth International Workshop on Spoken Language Translation (IWSLT)},
- adress = {Hong Kong},
-  year={2012}
+ booktitle = iwslt,
+ address = {Hong Kong},
+ year={2012}
 }
 @inproceedings{ref:venugopal2005,
 author = {Ashish Venugopal and Andreas Zollman and Alex Waibel}, 
@@ -174,7 +177,7 @@ address = {Ann Arbor, Michigan, USA},
 @inproceedings{ref:mediani2011,
   title={The {KIT} {E}nglish-{F}rench {T}ranslation systems for {IWSLT} 2011},
   author={Mediani, Mohammed and Cho, Eunah and Niehues, Jan and Herrmann, Teresa and Waibel, Alex},
-  booktitle ={Proceedings of the Eight International Workshop on Spoken Language Translation (IWSLT)},
+  booktitle = iwslt,
   address = {San Francisco, CA, USA},
   year={2011}
 }
@@ -236,21 +239,9 @@ address   = {Altanta, GA, USA},
 @inproceedings{ref:koehn2005,
   author =        {Philipp Koehn and Amittai Axelrod and Alexandra B. Mayne and Chris Callison-Burch and Miles Osborne and David Talbot},
   title =         {{E}dinburgh {S}ystem {D}escription for the 2005 {IWSLT} {S}peech {T}ranslation {E}valuation},
-  booktitle =     {Proceedings of the International Workshop on Spoken Language Translation (IWSLT)},
+  booktitle =     iwslt,
   year =          {2005},
   address =       {Pittsburgh, PA, USA},
-}
-
-@ARTICLE{ref:Giza,
-AUTHOR = {Franz Josef Och and Hermann Ney},
-TITLE = {A {S}ystematic {C}omparison of {V}arious {S}tatistical {A}lignment {M}odels},
-JOURNAL= {Computational Linguistics}, 
-NUMBER = 1,
-VOLUME = 29,
-YEAR = 2003,
-PAGES = {19--51},
-publisher =    {MIT Press},
-address =      {Cambridge, MA, USA},
 }
 
 @InProceedings{Niehues2012PhraseTableAdaptation,
@@ -281,13 +272,12 @@ pages="512--520",
 }
 
 @InProceedings{moore:2010:dataselection,
-author="Moore, R.C.
-and Lewis, W.",
+author="Moore, R.C. and Lewis, W.",
 title="Intelligent selection of language model training data",
-booktitle="Proceedings of the ACL 2010 Conference Short Papers",
+booktitle=acl,
 year="2010",
-publisher="Association for Computational Linguistics",
-address="Stroudsburg, PA, USA",
+month=jul,
+address={Uppsala, Sweden},
 pages="220--224",
 }
 
@@ -295,7 +285,8 @@ pages="220--224",
 AUTHOR = "Franz Josef Och",
 TITLE = "An {E}fficient {M}ethod for {D}etermining {B}ilingual {W}ord {C}lasses.",
 booktitle = eacl,
-YEAR = {1999}  }
+YEAR = {1999}  
+}
 
 @inproceedings{Bisazza:11b,
         Address = {San Francisco, CA},
@@ -390,15 +381,17 @@ booktitlelink= {http://emnlp2014.org/}
     pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=666&row=pdf}
 }
 
-@InProceedings{wuebker12:jane,                                                                                                                                                                                     
-    author= {Wuebker, Joern and Huck, Matthias and Peitz, Stephan and Nuhn, Malte and Freitag, Markus and Peter, Jan-Thorsten and Mansour, Saab and Ney, Hermann},
-    title= {Jane 2: Open Source Phrase-based and Hierarchical Statistical Machine Translation},
-    booktitle= {International Conference on Computational Linguistics},
-    year= 2012,
-    address= {Mumbai, India},
-    month= dec,
-    note= {To appear},
-    booktitlelink= {http://www.coling2012-iitb.org/}
+@InProceedings{	  wuebker12:jane,
+  author	= {Wuebker, Joern and Huck, Matthias and Peitz, Stephan and
+		  Nuhn, Malte and Freitag, Markus and Peter, Jan-Thorsten and
+		  Mansour, Saab and Ney, Hermann},
+  title		= {{Jane 2: Open Source Phrase-based and Hierarchical
+		  Statistical Machine Translation}},
+  booktitle	= coling12,
+  year		= 2012,
+  pages		= {483--491},
+  address	= {Mumbai, India},
+  month		= dec
 }
 
 @inproceedings{Heafield-estimate,                                                                                                                                                                                  
@@ -406,36 +399,35 @@ booktitlelink= {http://emnlp2014.org/}
   title = {Scalable Modified {Kneser-Ney} Language Model Estimation},
   year = {2013},
   month = {August},
-  booktitle = {Proceedings of the 51st Annual Meeting of the Association for Computational Linguistics},
+  booktitle = acl,
   address = {Sofia, Bulgaria},
-  pages = {690--696},
-  url = {http://kheafield.com/professional/edinburgh/estimate\_paper.pdf},
+  pages = {690--696}
 }
 
 @inproceedings{he12:discr,                                                                                                                                                                                         
   author    = {Xiaodong He and Li Deng},
   title     = {{Maximum Expected BLEU Training of Phrase and Lexicon Translation Models}},
-  booktitle = {Proceedings of the 50th Annual Meeting of the Association for Computational Linguistics (ACL)},
+  booktitle = acl,
   year      = {2012},
-  month     = {Jul},
+  month     = jul,
   address   = {Jeju, Republic of Korea},
   pages         = "292--301"
 }
 
 @Conference { wuebker13:wordClassModels,
 author= {Wuebker, Joern and Peitz, Stephan and Rietig, Felix and Ney, Hermann}, 
-title= {Improving Statistical Machine Translation with Word Class Models},      
-booktitle= {Conference on Empirical Methods in Natural Language Processing},    
+title= "{Improving Statistical Machine Translation with Word Class Models}",
+booktitle= emnlp,
 year= 2013,     
-address= {Seattle, USA},        
+address= {Seattle, WA, USA},        
 month= oct,
 pages = {1377--1381}
 }
 
 @InProceedings { wuebker2010:PhraseTraining,                                                                                                                                                                       
 author= {Wuebker, Joern and Mauser, Arne and Ney, Hermann},
-title= {Training Phrase Translation Models with Leaving-One-Out},
-booktitle= {Proceedings of the 48th Annual Meeting of the Assoc. for Computational Linguistics},
+title= "{Training Phrase Translation Models with Leaving-One-Out}",
+booktitle= acl,
 year= 2010,
 pages= {475-484},
 address= {Uppsala, Sweden},
@@ -448,8 +440,8 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=66
   author = {Michael Auli and Michel Galley and Jianfeng Gao},
   title = {{Large Scale Expected BLEU Training of Phrase-based Reordering Models} },
   year = {2014},
-  month = {Oct},
-  booktitle = {Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  month = oct,
+  booktitle = emnlp,
   address = {Doha, Qatar}
 }
 
@@ -468,9 +460,9 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=82
     author= {Peitz, Stephan and Freitag, Markus and Mauser, Arne and Ney, Hermann},
     title= "{Modeling Punctuation Prediction as Machine Translation}",
     year= 2011,
-    address= {San Francisco, CA},
+    address= {San Francisco, CA, USA},
     month= dec,
-    booktitle = {Proceedings of the International Workshop on Spoken Language Translation (IWSLT)},
+    booktitle = iwslt,
 }
 
 @article{hochreiter97:lstm,
@@ -485,7 +477,6 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=82
  issn = {0899-7667},
  pages = {1735--1780},
  numpages = {46},
- url = {http://dx.doi.org/10.1162/neco.1997.9.8.1735},
  doi = {10.1162/neco.1997.9.8.1735},
  acmid = {1246450},
  publisher = {MIT Press},
@@ -504,30 +495,257 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=82
 @InProceedings{durrani-EtAl:2013:Short,
   author    = {Durrani, Nadir  and  Fraser, Alexander  and  Schmid, Helmut  and  Hoang, Hieu  and  Koehn, Philipp},
   title     = {Can Markov Models Over Minimal Translation Units Help Phrase-Based SMT?},
+  booktitle = acl,
   month     = {August},
   year      = {2013},
   address   = {Sofia, Bulgaria},
-  publisher = {Association for Computational Linguistics},
-  pages     = {399--405},
-  url       = {http://www.aclweb.org/anthology/P13-2071}
+  pages     = {399--405}
 }
+
 @InProceedings{durrani-EtAl:2013:NAACL,
   author    = {Durrani, Nadir and  Fraser, Alexander  and  Schmid, Helmut},
   title     = "{Model With Minimal Translation Units, But Decode With Phrases}",
-  booktitle = {The 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+  booktitle = htlnaacl,
   month     = {June},
   year      = {2013},
-  address   = {Atlanta, Georgia, USA},
-  publisher = {Association for Computational Linguistics}
+  address   = {Atlanta, GA, USA},
+  pages     = {1--11}
 }
-
 
 @InProceedings{birch-etal:2013:IWSLT,
 author = {Birch, Alexandra and Durrani, Nadir and Koehn, Philipp },
-title = {Edinburgh SLT and MT System Description for the {IWSLT} 2013 Evaluation},
-booktitle = {Proceedings of the 10th International Workshop on Spoken Language Translation},
+title = "{Edinburgh SLT and MT System Description for the IWSLT 2013 Evaluation}",
+booktitle = iwslt,
 month = {December},
 year = {2013},
 address = {Heidelberg, Germany},
 pages = {40--48},
 }
+
+@InProceedings{	  wit3:2012,
+  address	= {Trento, Italy},
+  author	= {Mauro Cettolo and Christian Girardi and Marcello
+		  Federico},
+  booktitle	= {Proceedings of the 16$^{th}$ Conference of the European
+		  Association for Machine Translation (EAMT)},
+  date		= {28-30},
+  month		= {May},
+  pages		= {261--268},
+  title		= "{WIT$^3$: Web Inventory of Transcribed and Translated
+		  Talks}",
+  year		= {2012}
+}
+
+@Misc{		  wmt:www-13-task,
+  author	= "{Shared Translation Task of the ACL 2013 Eighth Workshop on Statistical Machine Translation}",
+  note		= "\url{http://www.statmt.org/wmt13/translation-task.html}"
+}
+
+@Misc{		  wmt:www-14-task,
+  author	= "{Shared Translation Task of the ACL 2014 Ninth Workshop on Statistical Machine Translation}",
+  note		= "\url{http://www.statmt.org/wmt14/translation-task.html}"
+}
+
+@InProceedings{	  eisele:2010:multiun,
+  title		= {{MultiUN: A Multilingual Corpus from United Nation
+		  Documents}},
+  author	= {Andreas Eisele and Yu Chen},
+  booktitle	= {Proceedings of the Seventh conference on International
+		  Language Resources and Evaluation},
+  month		= may,
+  year		= {2010},
+  pages		= {2868--2872}
+}
+
+@Misc{		  ldc:www,
+  author	= "{Linguistic Data Consortium (LDC)}",
+  note		= "\url{http://www.ldc.upenn.edu}"
+}
+
+@InProceedings{	  koehn:2005:mtsummit,
+  author	= {Philipp Koehn},
+  booktitle	= {{Proc.~of the {MT} Summit {X}}},
+  title		= {Europarl: A Parallel Corpus for Statistical Machine
+		  Translation},
+  year		= {2005},
+  month		= sep,
+  address	= {Phuket, Thailand}
+}
+
+@techreport{GerPolCorpus,
+  author={Barbaresi, Adrien},
+  title={{German Political Speeches, Corpus and Visualization}},
+  institution={ENS Lyon},
+  year=2012,
+  note={2nd Version},
+  url={http://purl.org/corpus/german-speeches},
+}
+
+@inproceedings{Gao:2008:MGIZA,
+    author = {Gao, Qin and Vogel, Stephan},
+    title = "{Parallel Implementations of Word Alignment Tool}",
+    booktitle = {Software Engineering, Testing, and Quality Assurance for Natural Language Processing},
+    series = {SETQA-NLP '08},
+    year = {2008},
+    month = jun,
+    address = {Columbus, OH, USA},
+    pages = {49--57}
+}
+
+@Article{och03:alignmentComparison,
+  title		= "{A Systematic Comparison of Various Statistical Alignment Models}",
+  author	= "Franz Josef Och and Hermann Ney",
+  journal	= "Computational Linguistics",
+  pages		= "19--51",
+  volume	= "29",
+  number	= "1",
+  month		= mar,
+  year		= "2003"
+}
+
+@inproceedings{cherry:2012:bts,
+    address= {Montr{\'e}al, Canada},
+	author = "Cherry, Colin and Foster, George",
+	booktitle = hltnaacl,
+	pages = "427--436",
+	title = "{Batch Tuning Strategies for Statistical Machine Translation}",
+	year = "2012",
+    month = jun
+}
+
+@InProceedings{stolcke02:srilm,
+  title		= {{SRILM -- an Extensible Language Modeling Toolkit}},
+  author	= {Stolcke, Andreas},
+  booktitle	= icslp,
+  address	= {Denver, CO, USA},
+  month		= sep,
+  year		= {2002},
+  pages		= "901--904"
+}
+
+@TechReport{chen98:aes,
+  author	= "Stanley F. Chen and Joshua Goodman",
+  title		= "{An Empirical Study of Smoothing Techniques for Language
+		  Modeling}",
+  year		= "1998",
+  month		= aug,
+  address	= "Cambridge, MA, USA",
+  number	= "TR-10-98",
+  pages		= "63 pages",
+  institution	= "Computer Science Group, Harvard University"
+}
+
+@InProceedings{och02:meForSMT,
+  author	= "Franz Josef Och and Hermann Ney",
+  title		= "{Discriminative Training and Maximum Entropy Models for
+		  Statistical Machine Translation}",
+  booktitle	= acl,
+  pages		= "295--302",
+  year		= "2002",
+  address	= "Philadelphia, PA, USA",
+  month		= jul
+}
+
+@InProceedings{iwslt12:hasler-2,
+  author	= {Eva Hasler and Barry Haddow and Philipp Koehn},
+  title		= "{Sparse Lexicalised Features and Topic Adaptation for
+		  SMT}",
+  pages		= {268--275},
+  booktitle	= iwslt,
+  address	= {Hong Kong},
+  year		= 2012,
+  month		= dec
+}
+
+@InProceedings{galley-manning:2008:EMNLP,
+    author    = {Galley, Michel  and  Manning, Christopher D.},
+    title     = {{A Simple and Effective Hierarchical Phrase Reordering Model}},
+    booktitle = emnlp,
+    month     = oct,
+    year      = {2008},
+    address   = {Honolulu, HI, USA},
+    pages     = {847--855}
+}
+
+@InProceedings{durrani-EtAl:2014:Coling,
+  author    = {Durrani, Nadir  and  Koehn, Philipp  and  Schmid, Helmut  and  Fraser, Alexander},
+  title     = "{Investigating the Usefulness of Generalized Word Representations in SMT}",
+  booktitle = "{Proceedings of COLING 2014, the 25th International Conference on Computational Linguistics: Technical Papers}",
+  month     = aug,
+  year      = {2014},
+  address   = {Dublin, Ireland},
+  pages     = {421--432}
+}
+
+@InProceedings{dyer13:fast_align,
+  author	= "Dyer, Chris and Chahuneau, Victor and Smith, Noah A.",
+  title		= "{A Simple, Fast, and Effective Reparameterization of IBM Model 2}",
+  booktitle	= hltnaacl,
+  pages		= "644–-648",
+  year		= "2013",
+  address	= "Atlanta, GA, USA",
+  month		= jun
+}
+
+@InProceedings{williams-uedinsyntaxwmt14,
+  author	= {Philip Williams and Rico Sennrich and Maria Nadejde and
+		  Matthias Huck and Eva Hasler and Philipp Koehn},
+  title		= "{Edinburgh's Syntax-Based Systems at WMT~2014}",
+  year		= {2014},
+  month		= {June},
+  booktitle	= wmt,
+  address	= {Baltimore, MD, USA},
+  pages     = "207–-214",
+}
+
+@InProceedings{	  schmid2004bitpar,
+  address	= "Geneva, Switzerland",
+  author	= "Schmid, Helmut",
+  booktitle	= "{Proc.\ of the Int.\ Conf.\ on Computational Linguistics
+		  (COLING)}",
+  title		= "{Efficient Parsing of Highly Ambiguous Context-Free
+		  Grammars with Bit Vectors}",
+  year		= 2004,
+  month		= aug
+}
+
+@InProceedings{huck-hoang-koehn:2014:W14-33,
+  author    = {Huck, Matthias  and  Hoang, Hieu  and  Koehn, Philipp},
+  title     = "{Augmenting String-to-Tree and Tree-to-String Translation with Non-Syntactic Phrases}",
+  booktitle = wmt,
+  month     = {June},
+  year      = {2014},
+  address   = {Baltimore, MD, USA},
+  pages     = {486--498}
+}
+
+@InProceedings{huck-hoang-koehn:2014:SSST-8,
+  author    = {Huck, Matthias  and  Hoang, Hieu  and  Koehn, Philipp},
+  title     = "{Preference Grammars and Soft Syntactic Constraints for GHKM Syntax-based Statistical Machine Translation}",
+  booktitle = {Proceedings of SSST-8, Eighth Workshop on Syntax, Semantics and Structure in Statistical Translation},
+  month     = oct,
+  year      = {2014},
+  address   = {Doha, Qatar},
+  pages     = {148--156}
+}
+
+@InProceedings{durrani-uedinwmt14,
+  author	= {Nadir Durrani and Barry Haddow and Philipp Koehn and Kenneth Heafield},
+  title		= "{Edinburgh's Phrase-based Machine Translation Systems for {WMT-14}}",
+  year		= {2014},
+  month		= {June},
+  booktitle	= wmt,
+  address	= {Baltimore, MD, USA},
+  pages     = {97--104}
+}
+
+@inproceedings{iwslt11:Bisazza,
+    author = {Arianna Bisazza and Nick Ruiz and Marcello Federico},
+    title = "{Fill-up versus Interpolation Methods for Phrase-based {SMT} Adaptation}",
+    pages = {136--143},
+    booktitle = iwslt,
+    address = {San Francisco, CA, USA},
+    year = 2011,
+    month = dec
+}
+
