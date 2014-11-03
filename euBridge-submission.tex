@@ -139,21 +139,21 @@ rescoring step \cite{sundermeyer14:bidirRNN} for the English$\to$French MT task.
 Similar cooperative approaches based on system combination have proven to be 
 valuable for machine translation in previous joint submissions,
 e.g.~\cite{freitag14:wmtEuBridge,freitag2013:euBridge}.
-
-
-The remainder of the paper is structured as follows:
+%%
 %
-We first describe the individual system setups by RWTH Aachen University (Section~\ref{rwth}),
-the University of Edinburgh (Section~\ref{uedin}), Karls\-ruhe Institute of Technology
-(Section~\ref{kit}), and Fondazione Bruno Kessler (Section~\ref{fbk}),
-respectively. We then present the techniques for machine translation system
-combination which have been employed to obtain consensus translations from the
-outputs of the individual systems of the project partners
-(Section~\ref{combination}). Experimental results are given in
-Section~\ref{results}. We 
+%The remainder of the paper is structured as follows:
+%
+%We first describe the individual system setups by RWTH Aachen University (Section~\ref{rwth}),
+%the University of Edinburgh (Section~\ref{uedin}), Karls\-ruhe Institute of Technology
+%(Section~\ref{kit}), and Fondazione Bruno Kessler (Section~\ref{fbk}),
+%respectively. We then present the techniques for machine translation system
+%combination which have been employed to obtain consensus translations from the
+%outputs of the individual systems of the project partners
+%(Section~\ref{combination}). Experimental results are given in
+%Section~\ref{results}. We 
 %analyse the translation results in
 %Section~\ref{analysis} and 
-finally conclude the paper with Section~\ref{conclusion}.
+%finally conclude the paper with Section~\ref{conclusion}.
 
 
 \section{RWTH Aachen University}
@@ -176,9 +176,11 @@ RWTH used \BLEU as optimization objective. For the German$\to$English translatio
 RWTH's translation systems are described in more detail in \cite{wuebker14:iwslt}
 
 
-\subsection{Backoff Language Models}
+%\subsection{Backoff Language Models}
 \label{sec:lms}
 
+\vspace{0.5em}
+\noindent{\bf Backoff Language Models}\\
 Each translation system used three backoff LMs
 that were estimated with the KenLM toolkit \cite{Heafield-estimate}:
 A large general domain 5-gram LM, an in-domain 5-gram LM and
@@ -198,9 +200,11 @@ With these class definitions, RWTH applied the technique shown in
 \cite{wuebker13:wordClassModels} to compute the wcLM on the
 same data as the general-domain LM.
 
-\subsection{Maximum Expected \BLEU Training}                                                                                                                                                                       
+%\subsection{Maximum Expected \BLEU Training}                                                                                                                                                                       
 \label{sec:rprop}
 
+\vspace{0.5em}
+\noindent{\bf Maximum Expected \BLEU Training}\\
 RWTH applied discriminative training, learning three types of features
 under a maximum expected \BLEU objective \cite{he12:discr}.
 It was performed on the TED portion of the data, which is
@@ -217,9 +221,11 @@ word pair features, and in the second pass a hierarchical reordering model, resu
 for log-linear combination.
 
 
-\subsection{Recurrent Neural Network Models}
+%\subsection{Recurrent Neural Network Models}
 \label{sec:rnn}
 
+\vspace{0.5em}
+\noindent{\bf Recurrent Neural Network Models}\\
 All systems applied rescoring on 1000-best lists using recurrent language and translation models.
 The recurrency was handled with the long short-term memory (LSTM) architecture
 \cite{hochreiter97:lstm} and RWTH used a class-factored output layer for
@@ -229,9 +235,11 @@ In addition to the recurrent language model (RNN-LM), RWTH applied the deep bidi
 model (RNN-BTM) described in \cite{sundermeyer14:bidirRNN}, which is capable of
 taking the \emph{full source context} into account for each translation decision.
 
-\subsection{Spoken Language Translation}
+%\subsection{Spoken Language Translation}
 \label{sec:slt}
 
+\vspace{0.5em}
+\noindent{\bf Spoken Language Translation}\\
 For the SLT task, RWTH reintroduced punctuation and case information before the actual translation similar to \cite{peitz:iwslt2011}.
 However, RWTH employed a hierarchical phrase-based system
 with a maximum of one nonterminal symbol per rule in place of a phrase-based system.
@@ -280,30 +288,32 @@ with modified Kneser-Ney smoothing~\cite{chen98:aes}. UEDIN trained
 individual LMs on each corpus and then interpolated them
 using weights tuned to minimize perplexity on a development set. 
 
-Common features included in the UEDIN phrase-based systems are:
-\vspace*{-1ex}
-\begin{packed_itemize}
-\item The language model
-\item Phrase translation scores in both directions, smoothed with Good-Turing discounting
-\item Lexical translation scores in both directions
-\item Word and phrase penalties
-\item Six simple count-based binary features
-\item Distance-based distortion cost
-\item A hierarchical lexicalized reordering model~\cite{galley-manning:2008:EMNLP} 
-\item Sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2}
-\item Operation sequence models over different word representations~~\cite{durrani-EtAl:2014:Coling} %~\cite{birch-etal:2013:IWSLT,durrani-EtAl:2014:Coling} 
-\end{packed_itemize}
-\vspace*{-1ex}
+Common features included in the UEDIN phrase-based systems are %:
+%\vspace*{-1ex}
+%\begin{packed_itemize}
+the language model,
+phrase translation scores in both directions smoothed with Good-Turing discounting,
+lexical translation scores in both directions,
+word and phrase penalties,
+six simple count-based binary features,
+distance-based distortion costs,
+a hierarchical lexicalized reordering model~\cite{galley-manning:2008:EMNLP}, 
+sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2} and
+operation sequence models over different word representations~~\cite{durrani-EtAl:2014:Coling}. %~\cite{birch-etal:2013:IWSLT,durrani-EtAl:2014:Coling} 
+%\end{packed_itemize}
+%\vspace*{-1ex}
 %
-Model weights for the log-linear model combination %\cite{och02:meForSMT} 
+Model weights %for the log-linear model combination %\cite{och02:meForSMT} 
 were optimized with batch MIRA~\cite{cherry:2012:bts} to maximize
 \BLEU~\cite{papineni02:bam}.
 
-\subsection{Spoken Language Translation}
+%\subsection{Spoken Language Translation}
+%\label{uedin:slt}
+
+\vspace{0.5em}
+\noindent{\bf Spoken Language Translation}\\
 \label{uedin:slt}
-
 %UEDIN trained a phrase-based German$\to$English SLT system for this system combination paper.
-
 One of the main challenges of spoken language translation is to overcome the
 mismatch in the style of data that the speech recognition systems output, and the
 written text that is used to train the translation model. ASR system output lacks punctuation and
@@ -331,11 +341,13 @@ batch MIRA and the \BLEU score.
 % Brown clusters~\cite{birch-etal:2013:IWSLT}. For this experiment we applied OSM models over words,
 % lemmas, POS tags, and a source morphology tag to target POS tag model.
 
-\subsection{Machine Translation}
+%\subsection{Machine Translation}
 
 
-\subsubsection{German$\to$English MT}
+%\subsubsection{German$\to$English MT}
 
+\vspace{0.5em}
+\noindent{\bf German$\to$English MT}\\
 For the UEDIN German$\to$English MT task system,
 pre-reordering~\cite{collins-koehn-kucerova:2005:ACL} and compound
 splitting~\cite{ref:koehn2003a} were applied to the German source language side
@@ -351,8 +363,10 @@ a 7-gram LM over lemmas (trained on WIT$^3$ only).
 Model weights were optimized on a concatenation of dev2010 and dev2012.
 
 
-\subsubsection{English$\to$French MT}
+%\subsubsection{English$\to$French MT}
 
+\vspace{0.5em}
+\noindent{\bf English$\to$French MT}\\
 UEDIN contributed two phrase-based systems for the English$\to$French EU-BRIDGE
 system combination. Both comprise Brown clusters with 200 classes as additional
 factors on source and target side.  The system denoted as UEDIN-A  was trained
@@ -364,8 +378,10 @@ clusters (UEDIN-A: 7-gram, UEDIN-B: 5-gram).
 %
 Model weights were optimized on dev2010.
 
-\subsubsection{English$\to$German MT}
+%\subsubsection{English$\to$German MT}
 
+\vspace{0.5em}
+\noindent{\bf English$\to$German MT}\\
 UEDIN contributed two phrase-based systems (UEDIN-A and UEDIN-B) and a
 syntax-based system (UEDIN-C) for English$\to$German MT.
 
@@ -424,7 +440,6 @@ using a lexicalized reordering model. %~\cite{ref:koehn2005}.
 % reorderings of both language pairs ..."; do you just want to say that you
 % used lexicalized reordering for the German tasks (but not for
 % English$\rightarrow$French)?
-
 The phrase tables of the systems were trained using \GIZA
 alignment~\cite{och03:alignmentComparison}. KIT adapted the phrase table to the
 TED domain using the backoff approach and by means of candidate
@@ -443,7 +458,6 @@ WIT$^3$ corpus. For German$\leftrightarrow$ English, KIT used a 9-gram LM
 with 100 or 1000 clusters and for the English$\to$French MT task,  a
 cluster-based 4-gram LM was trained on 500 clusters. For English$\to$German, KIT
 also used a 9-gram POS-based LM.
-
 The log-linear combination of all these models was optimized on the provided
 development data using MERT. % \cite{ref:venugopal2005}. 
 
@@ -456,12 +470,13 @@ development data using MERT. % \cite{ref:venugopal2005}.
 \label{sec:syscom}
 
 \begin{figure*}[t!]
-\resizebox{\linewidth}{!}{
+\centering
+\resizebox{0.9\linewidth}{!}{
     \includegraphics{pictures/syscombi-architecture.pdf}
 }
-\vspace*{-1.5em}
+\vspace*{-0.8em}
 \caption{Confusion network decoding structure.}
-\vspace*{-1.0em}
+\vspace*{-0.8em}
 \label{fig:syscomStructure}
 \end{figure*}
 
@@ -474,24 +489,25 @@ To combine the engines of the project partners for the EU-BRIDGE joint setups,
 we applied a system combination implementation that has been developed at RWTH
 Aachen University ~\cite{freitag14:jane}.
 
-In Figure \ref{fig:syscomStructure} an overview is illustrated.
+In Fig. \ref{fig:syscomStructure} an overview is illustrated.
 We first address the generation of a confusion network (CN) from $I$ input translations. 
 For that we need a pairwise alignment between all input hypotheses. This alignment
 is calculated via METEOR~\cite{banerjee05:maa}. The
 hypotheses are then reordered to match the word order of a selected
 skeleton hypothesis. Instead of using only one of the input hypothesis as skeleton, we
-generate $I$ different CNs each having one of the input systems as skeleton. The final
+generate $I$ different CNs, each having one of the input systems as skeleton. The final
 lattice is the union of all $I$ previous generated CNs.
-In Figure~\ref{fig:1}
+In Fig.~\ref{fig:1}
 an example confusion network of $I=4$ input translations with one skeleton translation is illustrated. Between two adjacent nodes, we always
 have a choice between the $I$ different system output words.
-The confusion network decoding step basically involves determining the shortest path through 
-the network. Each arc is assigned one score which is a linear model combination (Equation~\ref{eq:loglin})
+The confusion network decoding step involves determining the shortest path through 
+the network. Each arc is assigned one score which is a linear model combination (Eq.~\ref{eq:loglin})
 of $M$ different models.
-
+\vspace{-1em}
 \begin{equation}
 \label{eq:loglin}
  \sum_{m=1}^M \lambda_m h_m
+\vspace{-1em}
 \end{equation}
 
 The standard set of models is a word penalty, a 3-gram language
@@ -501,7 +517,7 @@ The $M$ different model weights $\lambda_m$ are trained with MERT~\cite{och03:me
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.85\linewidth]{pictures/example1}
+\includegraphics[width=0.7\linewidth]{pictures/example1}
 \vspace*{-0.5em}
 \caption{System A: \emph{the red cab} ; System B: \emph{the red train} ; System C: \emph{a blue car} ; System D: \emph{a green car} ; Reference: \emph{the blue car} .}
 \label{fig:1}
@@ -516,7 +532,9 @@ In this section, we present our experimental results. All reported \BLEU~\cite{p
 scores are case-sensitive with one reference. All system combination results have been generated with
 RWTH's open source system combination implementation Jane~\cite{freitag14:jane}.
 
-\subsection{German$\to$English SLT}
+%\subsection{German$\to$English SLT}
+\vspace{0.5em}
+\noindent{\bf German$\to$English SLT}\\
 For the German$\to$English SLT task, we combined three different individual systems
 generated by UEDIN, KIT, and RWTH. Experimental results are given in Table~\ref{tab:DeEnSLTResults}.
 The final system combination yields improvements of 1.5 points in \BLEU and 
@@ -529,6 +547,7 @@ dev2012 was the only given test set containing automatic speech recognition outp
 %Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
   %\vspace*{1.4em}
   \begin{center}
+\small
     \begin{tabular}{l|c|c}
       %\hline
       \bf{system} & \multicolumn{2}{c}{\bf{dev2012}} \\
@@ -540,12 +559,14 @@ dev2012 was the only given test set containing automatic speech recognition outp
        \textbf{syscom}                            & \rdm{22.2321791584} & \rdm{59.27763729185552} \\
       \end{tabular}
      \end{center}
+     \vspace{-0.75cm}
      \label{tab:DeEnSLTResults}
    \end{table}
 
 
-\subsection{German$\to$English MT}
-
+%\subsection{German$\to$English MT}
+\vspace{0.5em}
+\noindent{\bf German$\to$English MT}\\
 Similar to the SLT track, the German$\to$English MT system combination submission is a combined translation of three different individual systems
 by UEDIN, KIT, and RWTH. Experimental results are given in Table~\ref{tab:DeEnResults}. The system combination parameters have been optimized on test2012. 
 Compared to the best individual system (RWTH), the system combination improved translation scores by up to 1.5 points in \BLEU and
@@ -556,6 +577,7 @@ Compared to the best individual system (RWTH), the system combination improved t
 %Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
   %\vspace*{1.4em}
   \begin{center}
+\small
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
       \bf{system} & \multicolumn{2}{c|}{\bf{tst2010}} & \multicolumn{2}{c|}{\bf{tst2011}}  & \multicolumn{2}{c}{\bf{tst2012}} \\
@@ -569,11 +591,13 @@ Compared to the best individual system (RWTH), the system combination improved t
  %      \textbf{}                              & \rdm{} & \rdm{} & \rdm{} & \rdm{} & \rdm{} & \rdm{} &\\
       \end{tabular}
      \end{center}
+     \vspace{-0.7cm}
      \label{tab:DeEnResults}
    \end{table}
 
-\subsection{English$\to$French MT}
-
+%\subsection{English$\to$French MT}
+\vspace{0.5em}
+\noindent{\bf English$\to$French MT} \\
 For the English$\to$French MT task, we combined five different individual systems. FBK, KIT, and RWTH provided one individual system output
 for the system combination. UEDIN added one advanced contrastive system in addition to their primary system. Experimental results are given in Table~\ref{tab:EnFrResults}. 
 The system combination of all five individual systems yields an improvement of up to 0.6 points in \BLEU compared to the best RWTH individual system output.
@@ -581,11 +605,22 @@ Using a recurrent neural network (RNN) LM to rescore a 1000-best list of the sys
 improvement of +0.1 in \BLEU. The same RNN LM was applied in the best individual system of RWTH Aachen. The improvements are only small,
 as the model is already contained the best individual system.
 
+%\subsection{English$\to$German MT}
+
+\vspace{0.5em}
+\noindent{\bf English$\to$German MT}\\
+For the English$\to$German setup, we combined three different individual system setups of UEDIN with the primary submission of KIT. Experimental results 
+are given in Table~\ref{tab:EnDeResults}. All system combination parameters are tuned on tst2012. The EU-BRIDGE submission enhanced the translation quality by
+up to 1.4 points in \BLEU and 1.2 points in \TER compared to the best individual system.
+
+
 \begin{table}[bt!]
 \caption{Results for the English$\to$French MT task.}
 %Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
   %\vspace*{1.4em}
   \begin{center}
+\small
+     \vspace{-0.4cm}
     \resizebox{0.98\textwidth}{!}{\begin{minipage}{\textwidth}
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
@@ -604,20 +639,18 @@ as the model is already contained the best individual system.
       \end{tabular}
     \end{minipage}}
      \end{center}
+     \vspace{-0.7cm}
      \label{tab:EnFrResults}
    \end{table}
 
-\subsection{English$\to$German MT}
-
-For the English$\to$German setup, we combined three different individual system setups of UEDIN with the primary submission of KIT. Experimental results
-are given in Table~\ref{tab:EnDeResults}. All system combination parameters are tuned on tst2012. The EU-BRIDGE submission enhanced the translation quality by
-up to 1.4 points in \BLEU and 1.2 points in \TER compared to the best individual system.
 
 \begin{table}[bt!]
 \caption{Results for the English$\to$German MT task.}
 %Bold font indicates system combination results that are significantly better than the best single system (p $<$ 0.05).}
   %\vspace*{1.4em}
   \begin{center}
+\small
+     \vspace{-0.4cm}
     \resizebox{0.98\textwidth}{!}{\begin{minipage}{\textwidth}
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
@@ -635,6 +668,7 @@ up to 1.4 points in \BLEU and 1.2 points in \TER compared to the best individual
       \end{tabular}
       \end{minipage}}
      \end{center}
+     \vspace{-0.7cm}
      \label{tab:EnDeResults}
    \end{table}
 

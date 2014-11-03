@@ -8,7 +8,7 @@ It is worth noticing that all available development data sets, namely dev2010 an
 
 In order to adapt the system on TED specific domain and genre and to reduce the size of the system, data selection was carried out on all parallel English-French corpora, using the whole WIT$^3$ \cite{cettolo:2012:EAMT} training corpus as in-domain data.
 %
-Data selection was performed by means of XenC toolkit \cite{Rousseau:2013:pbml} exploiting the bilingual cross-entropy difference \cite{axelrod-he-gao:2011:EMNLP} mode, separately for each available training corpus except the in-domain WIT$^3$ data.
+Data selection was performed by means of XenC toolkit \cite{Rousseau:2013:pbml} exploiting bilingual cross-entropy difference \cite{axelrod-he-gao:2011:EMNLP} separately for each available training corpus except the in-domain WIT$^3$ data.
 %
 %
 Different amount of texts were selected from each corpora ranging from 2\% to 30\%, and then concatenating for building one parallel corpus containing 2.6M sentences for a total of 57M English and 63M French running words.
@@ -16,9 +16,9 @@ Different amount of texts were selected from each corpora ranging from 2\% to 30
 Two TMs and two RMs were trained independently on the parallel in-domain and selected data, using the standard Moses procedure and \MGIZA toolkit ~\cite{Gao:2008:MGIZA} for word-alignment; TMs and RMs were combined using the back-off technique (for both TM and RM), taking WIT$^3$ as primary component, for a total of 168M phrase pairs.
 The back-off table combination is similar to the fill-up technique  \cite{iwslt11:Bisazza}, but does not add any provenance binary features.
 
-The French side of in-domain and selected data were also employed to estimate a 2-component mixture language model \cite{Federico:98}. Moreover, a second huge French LM was estimated on all permitted monolingual French data consisting of about 1.4G running words, as a mixture of 8 components. 
+The French side of in-domain and selected data were also employed to estimate a 2-component mixture language model \cite{Federico:98}. Moreover, a second huge French LM was estimated on all permitted monolingual French data consisting of $\sim$1.4G running words, as a mixture of 8 components. 
 %
 Both LMs have order 5 and were smoothed by means of the interpolated Improved Kneser-Ney method \cite{Chen:98a}; they include 57M and 661M 5-grams, respectively.
 %
-A full description of the system can be found in the companion FBK system paper.
+A full description of the system can be found in the FBK system paper.
 
