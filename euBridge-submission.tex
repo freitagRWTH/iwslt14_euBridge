@@ -171,7 +171,9 @@ Both the phrase-based and the hierarchical decoder are implemented in RWTH's pub
 translation toolkit Jane~\cite{vilar10:jane,wuebker12:jane}.
 The model weights of all systems were tuned with standard Minimum Error Rate
 Training~\cite{och03:mer} on the provided dev2012 set.
-RWTH used \BLEU as optimization objective.
+RWTH used \BLEU as optimization objective. For the German$\to$English translation direction, in a preprocessing step the German source was decompounded
+\cite{koehn2003:compounds} and part-of-speech-based long-range verb reordering rules
+\cite{popovic06:reord} were applied.
 
 
 \subsection{Backoff Language Models}
