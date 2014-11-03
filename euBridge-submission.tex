@@ -293,9 +293,11 @@ with modified Kneser-Ney smoothing~\cite{chen98:aes}. UEDIN trained
 individual LMs on each corpus and then interpolated them
 using weights tuned to minimize perplexity on a development set. 
 
-Other common features included in the UEDIN phrase-based systems are:
+Common features included in the UEDIN phrase-based systems are:
+\vspace*{-1ex}
 \begin{packed_itemize}
-\item Phrase translation scores in both directions, \\smoothed with Good-Turing discounting
+\item The language model
+\item Phrase translation scores in both directions, smoothed with Good-Turing discounting
 \item Lexical translation scores in both directions
 \item Word and phrase penalties
 \item Six simple count-based binary features
@@ -304,6 +306,7 @@ Other common features included in the UEDIN phrase-based systems are:
 \item Sparse lexical and domain indicator features~\cite{iwslt12:Hasler-2}
 \item Operation sequence models over different word representations~~\cite{durrani-EtAl:2014:Coling} %~\cite{birch-etal:2013:IWSLT,durrani-EtAl:2014:Coling} 
 \end{packed_itemize}
+\vspace*{-1ex}
 %
 Model weights for the log-linear model combination %\cite{och02:meForSMT} 
 were optimized with batch MIRA~\cite{cherry:2012:bts} to maximize
