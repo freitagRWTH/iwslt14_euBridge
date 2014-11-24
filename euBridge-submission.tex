@@ -173,7 +173,7 @@ Training~\cite{och03:mer} on the provided dev2012 set.
 RWTH used \BLEU as optimization objective. For the German$\to$English translation direction, in a preprocessing step the German source was decompounded
 \cite{koehn2003:compounds} and part-of-speech-based long-range verb reordering rules
 \cite{popovic06:reord} were applied.
-RWTH's translation systems are described in more detail in \cite{wuebker14:iwslt}
+RWTH's translation systems are described in more detail in \cite{wuebker14:iwslt}.
 
 
 %\subsection{Backoff Language Models}
@@ -256,14 +256,14 @@ the final translation systems from the MT track could be kept completely unchang
 \section{University of Edinburgh}
 \label{uedin}
 
-The UEDIN translation engines are based on the open source Moses
-toolkit~\cite{koehn07:moses}. UEDIN set up phrase-based systems
-\cite{koehn03:spb} for all SLT and MT tasks covered in this paper, and
+The UEDIN translation engines~\cite{birch-etal:2014:IWSLT} are based on the open source Moses
+toolkit~\cite{koehn07:moses}. UEDIN set up phrase-based systems %~\cite{koehn03:spb} 
+for all SLT and MT tasks covered in this paper, and
 additionally a string-to-tree syntax-based system~\cite{Galleyetal:04a} %\cite{Galleyetal:04a,Williams:2012:wmt} 
 for the English$\to$German MT task.
 %
 % The systems were trained using monolingual and parallel data from
-% WIT$^3$~\cite{WIT3:2012}, Europarl~\cite{koehn:2005:mtsummit},
+% WIT$^3$~\cite{cettolo:2012:EAMT}, Europarl~\cite{koehn:2005:mtsummit},
 % Multi\-UN~\cite{eisele:2010:multiun}, the English and French Gigaword corpora
 % as provided by the Linguistic Data Consortium~\cite{ldc:www}, the German
 % Political Speeches Corpus~\cite{GerPolCorpus}, and the Common Crawl, $10^9$, and
@@ -280,7 +280,7 @@ data.
 %
 Word alignments for the MT track systems were created by aligning the data in both
 directions with \MGIZA~\cite{Gao:2008:MGIZA} and symmetrizing the two trained
-alignments~\cite{och03:alignmentComparison,koehn03:spb}. 
+alignments. %~\cite{och03:alignmentComparison,koehn03:spb}. 
 Word alignments for the SLT track system were created using
 fast\_align~\cite{dyer13:fast_align}.
 %

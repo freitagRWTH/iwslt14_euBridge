@@ -4,10 +4,6 @@
 @PREAMBLE{ "\newcommand{\SortNoop}[1]{}" }
 @STRING{acl	= "{Proc.\ of the Annual Meeting of the Assoc.~for
 		  Computational Linguistics (ACL)}" }
-@STRING{acl02	= "{Proc.\ of the 40th Annual Meeting of the Assoc.~for
-		  Computational Linguistics (ACL)}" }
-@STRING{acl03	= "{Proc.\ of the 41th Annual Meeting of the Assoc.~for
-		  Computational Linguistics (ACL)}" }
 @STRING{acl05-eval="{43rd Annual Meeting of the Assoc.~for Computational
 		  Linguistics: Proc.~Workshop on Intrinsic and Extrinsic
 		  Evaluation Measures for MT and/or Summarization}" }
@@ -17,6 +13,7 @@
 		  Linguistics}" }
 @STRING{eacl	= "{Proc.\ of the Conf.\ of the European Chapter of the
 		  Assoc.~for Computational Linguistics (EACL)}" }
+@STRING{eamt    = "{Proc.\ of the Annual Conf.\ of the European Assoc.~for Machine Translation (EAMT)}" }
 @STRING{emnlp	= "{Proc.\ of the Conf.\ on Empirical Methods for Natural
 		  Language Processing (EMNLP)}" }
 @STRING{hltnaacl= "{Proc.\ of the Human Language Technology Conf. / North
@@ -32,23 +29,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%% FBK citations, START
-@inproceedings{cettolo:2012:EAMT,
-        Address = {Trento, Italy},
-        Author = {Cettolo, Mauro and Girardi, Christian and Federico, Marcello},
-        Booktitle = {Proceedings of the Annual Conference of the European Association for Machine Translation (EAMT)},
-        Month = {May},
-        Title = {{WIT$^3$: Web Inventory of Transcribed and Translated Talks}},
-        Url = {http://hltshare.fbk.eu/EAMT2012/html/Papers/59.pdf},
-        Year = {2012},
-        Bdsk-Url-1 = {http://hltshare.fbk.eu/EAMT2012/html/Papers/59.pdf}}
 
 @InProceedings{axelrod-he-gao:2011:EMNLP,
   author    = {Axelrod, Amittai  and  He, Xiaodong  and  Gao, Jianfeng},
   title     = {Domain Adaptation via Pseudo In-Domain Data Selection},
   booktitle = emnlp,
   year      = {2011},
-  pages     = {355--362},
-  url       = {http://www.aclweb.org/anthology/D11-1033}
+  pages     = {355--362}
 }
 
 @article{Rousseau:2013:pbml,
@@ -130,7 +117,7 @@
   author	= "Franz Josef Och",
   title		= "{Minimum Error Rate Training in Statistical Machine
 		  Translation}",
-  booktitle	= acl03,
+  booktitle	= acl,
   pages		= "160--167",
   year		= "2003",
   address	= "Sapporo, Japan",
@@ -142,7 +129,7 @@
 		  Wei-Jing Zhu",
   title		= "{Bleu: a Method for Automatic Evaluation of Machine
 		  Translation}",
-  booktitle	= acl02,
+  booktitle	= acl,
   pages		= "311--318",
   year		= "2002",
   address	= "Philadelphia, PA, USA",
@@ -297,10 +284,9 @@ address   = {Altanta, GA, USA},
 }
 
 @InProceedings{Niehues2012PhraseTableAdaptation,
-author="Niehues, J.
-and Waibel, A.",
+author="Niehues, J. and Waibel, A.",
 title="{D}etailed {A}nalysis of {D}ifferent {S}trategies for {P}hrase {T}able {A}daptation in {SMT}",
-booktitle="Proceedings of the Tenth Conference of the Association for Machine Translation in the Americas (AMTA)",
+booktitle=amta,
 year="2012",
 }
 
@@ -310,7 +296,6 @@ and Waibel, Alex",
 title="{A}n {MT} {E}rror-{D}riven {D}iscriminative {W}ord {L}exicon using {S}entence {S}tructure {F}eatures",
 booktitle="Proceedings of the Eighth Workshop on Statistical Machine Translation",
 year="2013",
-publisher="Association for Computational Linguistics",
 address="Sofia, Bulgaria",
 pages="512--520",
 }
@@ -574,17 +559,14 @@ address = {Heidelberg, Germany},
 pages = {40--48},
 }
 
-@InProceedings{	  wit3:2012,
+@InProceedings{cettolo:2012:EAMT,
   address	= {Trento, Italy},
   author	= {Mauro Cettolo and Christian Girardi and Marcello
 		  Federico},
-  booktitle	= {Proceedings of the 16$^{th}$ Conference of the European
-		  Association for Machine Translation (EAMT)},
-  date		= {28-30},
-  month		= {May},
+  booktitle	= eamt,
+  month		= may,
   pages		= {261--268},
-  title		= "{WIT$^3$: Web Inventory of Transcribed and Translated
-		  Talks}",
+  title		= "{WIT$^3$: Web Inventory of Transcribed and Translated Talks}",
   year		= {2012}
 }
 
@@ -820,20 +802,28 @@ pdf = {http://www-i6.informatik.rwth-aachen.de/publications/downloader.php?id=37
 
 @InProceedings { wuebker14:iwslt,
 author= {Wuebker, Joern and Peitz, Stephan and Guta, Andreas and Ney, Hermann},	
-title= {The RWTH Aachen Machine Translation Systems for IWSLT 2014},	
-booktitle= {International Workshop on Spoken Language Translation},	
+title= "{The RWTH Aachen Machine Translation Systems for IWSLT 2014}",	
+booktitle= iwslt,	
 year= 2014,	
-address= {South Lake Tahoe, CA},	
+address= {South Lake Tahoe, CA, USA},	
 month= dec
 }
 
 @InProceedings { peitz2014:punctHiero,
 author= {Peitz, Stephan and Freitag, Markus and Ney, Hermann},
-title= {Better Punctuation Prediction with Hierarchical Phrase-Based Translation},
-booktitle= {International Workshop on Spoken Language Translation},
+title= "{Better Punctuation Prediction with Hierarchical Phrase-Based Translation}",
+booktitle= iwslt,
 year= 2014,
-address= {Lake Tahoe, CA, USA},
-month= dec,
-note= {to appear},
-booktitlelink= {http://workshop2014.iwslt.org/}
+address= {South Lake Tahoe, CA, USA},
+month= dec
 }
+
+@InProceedings{birch-etal:2014:IWSLT,
+author = {Alexandra Birch and Matthias Huck and Nadir Durrani and Nikolay Bogoychev and Philipp Koehn},
+title = "{Edinburgh SLT and MT System Description for the IWSLT 2014 Evaluation}",
+booktitle= iwslt,	
+year= 2014,	
+address= {South Lake Tahoe, CA, USA},	
+month= dec
+}
+
