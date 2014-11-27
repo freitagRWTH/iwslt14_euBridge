@@ -1,0 +1,390 @@
+\documentclass[final,table,xcolor=dvipsnames]{beamer}
+\mode<presentation>
+{
+%\usetheme{I6pd2}
+%\usetheme{Aachen}
+%\usetheme{I6td}
+\usetheme{I6dv2}
+}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{sfmath}            % for sans serif math fonts; wget http://dtrx.de/od/tex/sfmath.sty
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%% A0: 841mm � 1189mm
+\usepackage[size=custom,height=118.9,width=84.1,scale=1.5]{beamerposter}
+\usepackage{rotating}
+
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\listfiles
+
+\usepackage{fp}
+\usepackage{ifthen}
+
+\def\roundposition{1} 
+\newcommand{\rd}[1]{\ifthenelse{\equal{#1}{--}}{--}{\edef\rounded{0}\FPeval\rounded{round(#1,\roundposition)}\rounded}}
+%\newcommand{\rdm}[1]{\edef\rounded{0}\FPeval\rounded{round(#1*100,\roundposition)}\rounded}
+\newcommand{\rdm}[1]{\edef\rounded{0}\FPeval\rounded{round(#1,\roundposition)}\rounded}
+\newcommand{\rdmb}[1]{\edef\rounded{0}\FPeval\rounded{round(#1*100,\roundposition)}\textcolor{ta3orange}{\rounded}}
+
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\myargmax}[1]{\underset{#1}{\operatorname{argmax}}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+
+\newcommand{\tabby}[4]{\edef\rounded{0}\FPeval\rounded{round((#1+#3)*50,\roundposition)}\rounded & \edef\rounded{0}\FPeval\rounded{round((#2+#4)*50,\roundposition)}\rounded}
+\newcommand{\tabbby}[4]{\edef\rounded{0}\FPeval\rounded{round((#1+#3)*50,\roundposition)}\textcolor{ta3orange}{\rounded} & \edef\rounded{0}\FPeval\rounded{round((#2+#4)*50,\roundposition)}\textcolor{ta3orange}{\rounded}}
+
+\newcommand*{\igEX}[1]{\includegraphics[keepaspectratio,height=.103\linewidth]{../figures/deselaers/vidzoom/example-groundtruth/#1}}
+\newcommand*{\igFEAT}[1]{\includegraphics[keepaspectratio,width=.45\linewidth]{../figures/deselaers/vidzoom/example-features/#1}}
+\newcommand*{\specialfig}[1]{\includegraphics[height=.1\linewidth]{../figures/deselaers/vidzoom/example-zoom/#1}}
+
+\newcommand{\myshrinkyleft}{\vspace{-.8cm}}
+\newcommand{\myshrinkycenter}{\vspace{-.299cm}}
+\newcommand{\myshrinkyright}{\vspace{-.485cm}}
+
+\newcommand{\todo}[1]{ \textcolor{red}{#1} }
+%\newcommand\percent{\hspace*{-0.4ex}\ensuremath{^{^{[\%]}}}}
+\newcommand\percent{[\%]}
+\newcommand\BLEU{\textsc{Bleu}\xspace}
+\newcommand\sBLEU{\textsc{sBleu}\xspace}
+%\newcommand\BLEUpercent{\BLEU\percent\xspace}
+\newcommand\TER{\textsc{Ter}\xspace}
+%\newcommand\TERpercent{\TER\percent\xspace}
+\newcommand\TERpercent{\TER}
+\newcommand\BLEUpercent{\BLEU}
+
+\newcommand{\GIZA}{{GIZA\nolinebreak[4]\hspace{-.025em}\raisebox{.2ex}{\small++}}\xspace}
+
+\usepackage{tabularx}
+%\newcolumntype{W}[1]{>{}p{#1}} 
+\newcolumntype{W}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}  % tabularx Spalten zentrieren
+\usepackage{booktabs}
+\usepackage{mathptmx}
+\usepackage{fp}
+\usepackage{xspace}
+\usepackage{color}
+
+\newcommand{\rel}{1} \newcommand{\nrel}{0} 
+\newcommand*{\J}{{\mathcal{T}}}
+\newcommand{\whalf}{\frac{w}{2}} \newcommand{\hhalf}{\frac{h}{2}}
+\graphicspath{{figures/}}
+
+
+\usepackage{xspace}
+
+\title{\large EU-BRIDGE MT: Combined Machine Translation} 
+
+\author{\bf $\setcounter{footnote}{1} ^\fnsymbol{footnote}$Markus Freitag, $^\fnsymbol{footnote}$Stephan Peitz, $^\fnsymbol{footnote}$Joern Wuebker, $^\fnsymbol{footnote}$Hermann Ney, \\
+        \bf $\setcounter{footnote}{3} ^\fnsymbol{footnote}$Matthias Huck, $^\fnsymbol{footnote}$Rico Sennrich, $^\fnsymbol{footnote}$Nadir Durrani, 
+        \bf $\setcounter{footnote}{3} ^\fnsymbol{footnote}$Maria Nadejde, $^\fnsymbol{footnote}$Philip Williams, $^\fnsymbol{footnote}$Philipp Koehn, \\
+        \bf $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Teresa Herrmann, $^\fnsymbol{footnote}$Eunah Cho, $^\fnsymbol{footnote}$Alex Waibel 
+}
+
+\institute %[RWTH Aachen University] % (optional, but mostly needed)
+{\rule{0pt}{1.05\baselineskip}\large \bf $\setcounter{footnote}{1} ^\fnsymbol{footnote}$RWTH Aachen University,
+  $\setcounter{footnote}{3} ^\fnsymbol{footnote}$University of Edinburgh, 
+  $\setcounter{footnote}{2} ^\fnsymbol{footnote}$Karlsruhe Institute of Technology 
+}
+
+\date[June 5th, 2014]{June 5th, 2014}
+
+\begin{document}
+\begin{frame}{}
+
+%\vspace{-1.5cm}
+\begin{minipage}{\textwidth}
+
+\begin{columns}[t]
+
+\begin{column}{.46\linewidth}
+
+\begin{block}{EU-BRIDGE}
+   \begin{itemize}
+   \item Research project funded by the European Union \url{http://www.eu-bridge.eu}
+    \vspace*{0.5ex}
+   \item EU-BRIDGE WMT 2014 single systems:
+    \vspace*{0.5ex}
+    \begin{description}
+    \item[RWTH:] \hspace*{0.5ex} RWTH Aachen University
+    \item[UEDIN:] \hspace*{0.5ex} University of Edinburgh
+    \item[KIT:] \hspace*{0.5ex} Karlsruhe Institute of Technology
+    \end{description}
+    \vspace*{0.5ex}
+    \item Combined EU-BRIDGE WMT 2014 submissions \\via the RWTH system combination approach
+    \item Final submissions are system combinations of all given individual systems
+    \end{itemize}
+
+\end{block}
+
+\begin{block}{RWTH Aachen University}
+
+  \begin{itemize}
+    \item Systems (open source toolkit Jane):
+    \vspace*{0.5ex}
+      \begin{description}
+          \item[\textcolor{CadetBlue}{\emph{RWTH scss}}\,:] \hspace*{0.5ex} phrase-based
+          \item[\textcolor{CadetBlue}{\emph{RWTH hiero}}\,:]\hspace*{0.5ex} hierarchical phrase-based
+      \end{description}
+    \vspace*{0.5ex}
+    \item POS-based pre-reordering and compound splitting
+    \item Hierarchical reordering model (\emph{scss}\,/\emph{hiero}\,)
+    \item Word class language model (\emph{scss}\,/\emph{hiero}\,)
+    \item Discriminative phrase training (\emph{scss}\,)
+  \end{itemize}
+
+\end{block}
+
+
+\begin{block}{University of Edinburgh: Phrase-based Systems}
+  \begin{itemize}
+  \item Moses with advanced features (\textcolor{CadetBlue}{\emph{UEDIN phrase-based 1}\,})
+  \vspace*{0.5ex}
+    \begin{itemize}
+%    \item Large tuning set concatenating newstest 2008-2012
+    \item Syntactic pre-reordering and compound splitting (DE-EN)
+    \item Hierarchical lexicalized reordering
+    \item Operation sequence model (OSM)
+    \item Sparse lexical features and domain features
+    \end{itemize}
+  \vspace*{0.5ex}
+  \item Further extensions (\textcolor{CadetBlue}{\emph{UEDIN phrase-based 2}\,})
+  \vspace*{0.5ex}
+    \begin{itemize}
+    \item Word cluster target sequence model and OSM
+    \item Operation sequence model over POS and morph tags
+    \end{itemize}
+  \end{itemize}
+\end{block}
+
+\begin{block}{University of Edinburgh: Syntax-based Systems}
+  \begin{itemize}
+  \item Syntax-based Moses
+  \vspace*{0.5ex}
+    \begin{itemize}
+    \item GHKM rule extraction with composed rules 
+    \vspace*{0.5ex}
+      \begin{description}
+          \item[String-to-tree (\textcolor{CadetBlue}{\emph{S2T}}\,):] \hspace*{0.5ex} target-side syntactic annotation
+          \item[Tree-to-string (\textcolor{CadetBlue}{\emph{T2S}}\,):] \hspace*{0.5ex} source-side syntactic annotation
+      \item[String-to-string (\textcolor{CadetBlue}{\emph{S2S}}\,):] \hspace*{0.5ex} syntactic labels from \emph{S2T}\, replaced with a single generic non-terminal, and added rules from plain phrase-based extraction
+      \end{description}
+    \vspace*{0.5ex}
+    \item Syntactic annotation obtained with different parsers
+    \vspace*{0.5ex}
+      \begin{itemize}
+        \item English: \textcolor{CadetBlue}{\emph{Berkeley}\, Parser}
+      \item German: \textcolor{CadetBlue}{\emph{ParZu}}, \textcolor{CadetBlue}{\emph{BitPar}}, \textcolor{CadetBlue}{\emph{Stanford}\, Parser}, \textcolor{CadetBlue}{\emph{Berkeley}\, Parser}
+      \end{itemize}
+    \vspace*{0.5ex}
+    \item Chart-based decoding
+    \end{itemize}
+  \end{itemize}
+\end{block}
+
+\begin{block}{Karlsruhe Institute of Technology}
+      \begin{itemize}
+        \item \textcolor{CadetBlue}{\emph{KIT}\,} phrase-based translation systems trained on large corpora
+        \item Word alignment using \GIZA for German$\to$English and discriminative word alignment for English$\to$German
+        \item Data selection and filtering using cross entropy for language modeling
+        \item Combination of language models (LM): word-based LMs, POS-based LM,  and cluster LM
+        \item Combination of reordering models: lexicalized reordering, POS-based reordering and tree-based reordering
+        \item Discriminative word lexica using source context and bilingual LM modeling contexts on source and target side
+      \end{itemize}
+    \vspace{0.5ex}
+\end{block}
+
+
+\end{column}
+
+
+
+\begin{column}{.46\linewidth}
+
+
+
+
+
+
+
+\begin{block}{System Combination}
+\begin{figure}
+\small % \begin{small}
+\begin{center}
+\begin{tabular}{l|llllll}
+\hline
+\vspace{0.2cm}
+{\small system}   & \multicolumn{6}{l}{\bf  0.25 \ \ would your like coffee or tea} \\
+\vspace{0.2cm}
+{\small hypotheses}   & \multicolumn{6}{l}{\bf  0.35 \ \ have you tea or coffee} \\
+\vspace{0.2cm}
+ & \multicolumn{6}{l}{\bf  0.10 \ \ would like your coffee or} \\
+ & \multicolumn{6}{l}{\bf  0.30 \ \ coffee would you like} \\
+\hline
+\vspace{0.2cm}
+{\small alignment} & \multicolumn{6}{l}{have$|${\bf would} you$|${{\bf your}} $\epsilon$$|${{\bf like}} coffee$|${{\bf coffee}} or$|${{\bf
+ or}} tea$|${\bf tea}} \\
+\vspace{0.2cm}
+{\small and} & \multicolumn{6}{l}{would$|${\bf would} your$|${\bf   your} like$|${\bf   like} coffee$|${\bf   coffee} or$|${\bf   
+or} $\epsilon$$|${\bf   tea}} \\
+\vspace{0.2cm}
+{\small reordering} & \multicolumn{6}{l}{would$|${\bf   would} you$|${\bf   your} like$|${\bf   like} coffee$|${\bf   coffee} $\epsilon$$|${\bf   or} $\epsilon$$|${\bf   tea}} \\
+% \ \\
+\hline
+\vspace{0.2cm}
+          & {\bf   would} &  {\bf   your} & {\bf   like}  & {\bf   coffee} & {\bf   or} &
+ {\bf   tea} \\
+\vspace{0.2cm}
+{\small confusion} &  have  & you   & $\epsilon$    & coffee & or & tea \\
+\vspace{0.2cm}
+{\small network}    & would & your  & like & coffee & or & $\epsilon$ \\
+            & would & you  & like & coffee & $\epsilon$ & $\epsilon$ \\
+\hline
+%          \cline{2-10}
+\vspace{0.2cm}
+{\small voting} & {\bf would} & {\bf you} & $\epsilon$ & {\bf coffee} & {\bf or} & {\bf tea} \\
+         & $0.75$ & $0.75$ & $0.25$ & $1.0$ & $0.75$ & $0.5$ \\
+%         &          &             &           &             &            &            &              &          &  \\
+\vspace{0.2cm}
+         &  have & your  & {\bf like} &  & $\epsilon$ & $\epsilon$ \\
+         &  $0.25$ & $0.25$  & $0.75$ &  & $0.25$ & $0.5$ \\
+\hline
+\end{tabular}
+\vspace*{-0.3cm}
+\normalsize
+\end{center}
+
+\vspace*{-0.5cm}
+\end{figure}
+\end{block}
+
+
+\begin{block}{English$\to$German Results}
+      System combination is tuned on news\-test2011, news\-test2013 is used as
+  held-out test set for all single systems and syscom.
+\begin{table}[bt!]
+
+      %Bold font indicates system combination results that are significantly better than the best single system with p $<$ 0.05. 
+      %Italic font indicates system combination results that are significantly better than the best single system with p $<$ 0.1.}
+  \begin{center}
+    \begin{tabular}{l|r|r|r|r|r|r|}
+      %\hline
+        \bf{\small{system}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} \\
+        \bf{\small{}} & \multicolumn{2}{c|}{\bf{\small{2011}}} & \multicolumn{2}{c|}{\bf{\small{2012}}} & \multicolumn{2}{c|}{\bf{\small{2013}}} \\        
+                            & \BLEU & \TER & \BLEU & \TER & \BLEU & \TER\\
+       \hline \hline
+       \textbf{\small{UEDIN phrase-based 1}}      & \rdm{17.46} & \rdm{67.34} & \rdm{18.20} & \rdm{64.95} & \rdm{20.47} & \rdm{62.65}\\
+       \textbf{\small{UEDIN phrase-based 2}}      & \rdm{17.83} & \rdm{66.85} & \rdm{18.54} & \rdm{64.62} & \rdm{20.84} & \rdm{62.26}\\
+       \textbf{\small{UEDIN GHKM S2T (ParZu)}}    & \rdm{17.22} & \rdm{67.61} & \rdm{17.99} & \rdm{65.50} & \rdm{20.21} & \rdm{62.83}\\
+       \textbf{\small{UEDIN GHKM S2T (BitPar)}}   & \rdm{16.30} & \rdm{68.96} & \rdm{17.32} & \rdm{66.58} & \rdm{19.45} & \rdm{63.92}\\
+       \textbf{\small{UEDIN GHKM S2T (Stanford)}} & \rdm{16.09} & \rdm{69.17} & \rdm{17.16} & \rdm{66.97} & \rdm{18.99} & \rdm{64.22}\\
+       \textbf{\small{UEDIN GHKM S2T (Berkeley)}} & \rdm{16.26} & \rdm{68.89} & \rdm{17.23} & \rdm{66.66} & \rdm{19.32} & \rdm{63.80}\\
+       \textbf{\small{UEDIN GHKM T2S (Berkeley)}} & \rdm{16.71} & \rdm{68.85} & \rdm{17.45} & \rdm{66.85} & \rdm{19.52} & \rdm{63.80}\\
+       \textbf{\small{UEDIN GHKM S2S (Berkeley)}} & \rdm{16.27} & \rdm{69.15} & \rdm{17.30} & \rdm{66.80} & \rdm{19.06} & \rdm{64.28}\\
+       \textbf{\small{KIT}}                       & \rdm{17.08} & \rdm{66.95} & \rdm{17.78} & \rdm{64.78} & \rdm{20.21} & \rdm{62.21}\\ \hline
+       \textbf{\small{syscom}}                    & \textbf{\rdm{18.42}} & \textbf{\rdm{65.02}} & \rdm{18.71} & \textbf{\rdm{63.39}} & \emph{\rdm{21.34}} & \textbf{\rdm{60.57}}\\
+      \end{tabular}
+  \end{center}
+     \label{tab:EnGeResults}
+   \end{table}
+
+\end{block}
+
+
+\begin{block}{German$\to$English Results}
+    System combination is tuned on news\-test2012, news\-test2013 is used as
+  held-out test set for all single systems and syscom.
+\begin{table}[bt!]
+%Bold font indicates system combination results that are significantly better than the best single system with p $<$ 0.05.}
+  \begin{center}
+    \begin{tabular}{l|r|r|r|r|r|r|}
+      %\hline
+        \bf{\small{system}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} & \multicolumn{2}{c|}{\bf{\small{newstest}}} \\
+        \bf{\small{}} & \multicolumn{2}{c|}{\bf{\small{2011}}} & \multicolumn{2}{c|}{\bf{\small{2012}}} & \multicolumn{2}{c|}{\bf{\small{2013}}} \\
+      & \BLEU & \TER & \BLEU & \TER & \BLEU & \TER\\
+       \hline \hline
+       \textbf{\small{KIT}}                       & \rdm{24.97} & \rdm{57.56} & \rdm{25.24} & \rdm{57.36} & \rdm{27.54} & \rdm{54.41} \\
+     \textbf{\small{UEDIN phrase-based}}          & \rdm{23.90} & \rdm{59.18} & \rdm{24.68} & \rdm{58.30} & \rdm{27.41} & \rdm{55.01} \\
+       \textbf{\small{RWTH scss}}                 & \rdm{23.59} & \rdm{59.49} & \rdm{24.23} & \rdm{58.50} & \rdm{27.04} & \rdm{55.00} \\
+       \textbf{\small{RWTH hiero}}                & \rdm{23.32} & \rdm{59.94} & \rdm{24.12} & \rdm{59.01} & \rdm{26.73} & \rdm{55.91} \\
+       \textbf{\small{UEDIN GHKM S2T (Berkeley)}} & \rdm{23.01} & \rdm{60.08} & \rdm{23.22} & \rdm{60.82} & \rdm{26.22} & \rdm{56.86} \\ \hline
+       \textbf{\small{syscom}}                    & \rdm{25.57} & \rdm{57.14} & \textbf{\rdm{26.37}} & \textbf{\rdm{56.53}} & \textbf{\rdm{29.14}} & \textbf{\rdm{53.35}} \\
+      \end{tabular}
+     \end{center}
+     \label{tab:DeEnResults}
+   \end{table}
+\end{block}
+
+\begin{block}{German$\to$English news\-test2013 cross \sBLEU scores}
+\vspace*{-0.5cm}
+%Cross \BLEU scores for the German$\to$English newstest2013 test set. (Pairwise \BLEU scores: each entry is taking the horizontal system as hypothesis and the other one as reference.)
+\begin{table}[bt!]
+  \begin{center}
+    \begin{tabular}{l|c|c|c|c|c|c}
+        & \textbf{\small{KIT}} & \textbf{\small{UEDIN}} & \textbf{\small{RWTH scss}} & \textbf{\small{RWTH hiero}} & \textbf{\small{UEDIN S2T}} & \textbf{\small{syscom}}  \\ \hline 
+          \textbf{\small{KIT}}      &       & 59.07 & 57.60 & 57.91 & 55.62 & 77.68 \\ \hline 
+             \textbf{\small{UEDIN}} & 59.17 &  & 56.96 & 57.84 & 59.89 & 72.89 \\  \hline 
+         \textbf{\small{RWTH scss}} & 57.64 & 56.90 &  & 64.94 & 53.10 & 71.16 \\  \hline 
+        \textbf{\small{RWTH hiero}} & 57.98 & 57.80 & 64.97 &  & 55.73 & 70.87 \\  \hline 
+         \textbf{\small{UEDIN S2T}} &55.75 & 59.95 & 53.19 & 55.82 &  & 65.35 \\  \hline 
+            \textbf{\small{syscom}} & 77.76 & 72.83 & 71.17 & 70.85 & 65.24 &  \\
+      \end{tabular}
+     \end{center}
+     \label{tab:CrossValidationDeEn}
+%\vspace*{1em}
+   \end{table}
+\end{block}
+
+
+\begin{block}{Open Source MT System Combination}
+
+  \textbf{Our system combination framework is publicly available}
+  \vspace*{0.5ex}
+   \begin{itemize}
+     \item Part of release 2.3 of the \textbf{Jane} toolkit \url{http://www.hltpr.rwth-aachen.de/jane/}
+     %\vspace*{0.5ex}
+    % \item M. Freitag, M. Huck, and H. Ney. \\Jane: Open Source Machine Translation System Combination. \\In Proc.\ of the EACL, Gothenburg, Sweden, April 2014.
+   \end{itemize}
+    \vspace{-0.2ex}
+\end{block}
+
+\end{column}
+
+
+\end{columns}
+
+% \begin{columns}
+% 
+% \begin{column}{.96\linewidth}
+% 
+% \begin{block}{Example Confusion Network}
+% 
+% \begin{figure}[t!]
+% \resizebox{\linewidth}{!}{
+% \includegraphics{pictures/523_single.pdf}
+% }
+% %\caption{Scored confusion network. *EPS* denotes the empty word, red arcs highlight the shortest path.}
+% \label{fig:scoredFst}
+% \end{figure}
+% \center
+% \small
+% Scored confusion network. *EPS* denotes the empty word, red arcs highlight the shortest path.
+% \end{block}
+% 
+% \end{column}
+% 
+% \end{columns}
+
+\end{minipage}
+
+\end{frame}
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
