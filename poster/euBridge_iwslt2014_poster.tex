@@ -139,7 +139,7 @@
 \begin{block}{RWTH Aachen University}
 
   \begin{itemize}
-    \item Phrase-based systems based on open source toolkit Jane:
+    \item Phrase-based systems based on open source \emph{Jane} toolkit
     \item Trained on all available data
     \item Three backoff-language models: 5-gram general domain, 5-gram in-domain, 7-gram word class LM
     \item Hierarchical reordering model
@@ -155,7 +155,7 @@
 
 \begin{block}{Karlsruhe Institute of Technology}
       \begin{itemize}
-              \item \textcolor{CadetBlue}{\emph{KIT}\,} phrase-based translation systems trained on large corpora
+              \item Phrase-based translation systems trained on large corpora
               \item Systems for English$\to$German and English$\to$French MT, as well as German$\to$English MT and SLT
               \item Data selection and filtering using cross entropy for \\ language modeling
               \item Combination of language models (LM): word-based LMs, POS-based LM,  and cluster LM
@@ -174,15 +174,23 @@
 \begin{block}{University of Edinburgh}
 
 \begin{itemize}
-\item SLT system
+\item SLT system:
   \vspace*{0.5ex}
   \begin{itemize}
     \item Monolingual, monotone SMT punctuation model for punctuation of ASR output 
-    \item Operation sequence model (OSM) over words and word clusters
-    \item Sparse lexical features and  hierarchical lexicalized reordering
+    \item Operation sequence model over words and word clusters
+    \item Sparse lexical features and hierarchical lexicalized reordering
   \end{itemize}
-\item MT systems
+\vspace*{0.5ex}
+\item MT systems:
   \vspace*{0.5ex}
+  \begin{itemize}
+    \item Phrase-based with factored translation model\\ (DeEn, EnFr UEDIN-A~\&~B, EnDe UEDIN-A~\&~B)
+    \item String-to-tree syntax-based (EnDe UEDIN-C)
+    \item EnFr: UEDIN-B trained with all corpora, UEDIN-A without Multi\-UN and $10^9$
+    \item EnDe: UEDIN-B trained with parallel data restricted to the in-domain WIT$^3$ corpus, UEDIN-A~\&~C trained with all corpora
+  \end{itemize}
+
 \end{itemize}
 
 %  \begin{itemize}
