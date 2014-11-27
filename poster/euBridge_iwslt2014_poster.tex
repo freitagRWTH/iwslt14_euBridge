@@ -139,17 +139,13 @@
 \begin{block}{RWTH Aachen University}
 
   \begin{itemize}
-    \item Systems (open source toolkit Jane):
-    \vspace*{0.5ex}
-      \begin{description}
-          \item[\textcolor{CadetBlue}{\emph{RWTH scss}}\,:] \hspace*{0.5ex} phrase-based
-          \item[\textcolor{CadetBlue}{\emph{RWTH hiero}}\,:]\hspace*{0.5ex} hierarchical phrase-based
-      \end{description}
-    \vspace*{0.5ex}
-    \item POS-based pre-reordering and compound splitting
-    \item Hierarchical reordering model (\emph{scss}\,/\emph{hiero}\,)
-    \item Word class language model (\emph{scss}\,/\emph{hiero}\,)
-    \item Discriminative phrase training (\emph{scss}\,)
+    \item Phrase-based systems based on open source toolkit Jane:
+    \item Trained on all available data
+    \item Three backoff-language models: 5-gram general domain, 5-gram in-domain, 7-gram word class LM
+    \item Hierarchical reordering model
+    \item Maximum expected \BLEU training (phrase, lexical and reordering features)
+    \item Recurrent neural language and bidirectional translation models
+    \item SLT: Punctuation prediction and recasing with monolingual hiero system
   \end{itemize}
 
 \end{block}
