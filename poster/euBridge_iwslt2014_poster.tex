@@ -223,7 +223,12 @@
 
 \begin{block}{Fondazione Bruno Kessler}
       \begin{itemize}
-          \item FBK section
+          \item Phrase-based Moses with standard features
+          \item Data selection with bilingual cross-entropy difference
+          \item Data selected: 57M English, 63M French words
+          \item Independently models for TED and selected data
+          \item Model combination: back-off (TM, RM) and mixture (LM)
+          \item Additional huge French LM trained on 1.4G words
       \end{itemize}
     \vspace{0.5ex}
 \end{block}
