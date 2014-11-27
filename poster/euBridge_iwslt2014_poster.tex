@@ -73,6 +73,9 @@
 \newcommand*{\J}{{\mathcal{T}}}
 \newcommand{\whalf}{\frac{w}{2}} \newcommand{\hhalf}{\frac{h}{2}}
 \graphicspath{{figures/}}
+    
+\renewcommand{\arraystretch}{1.1}
+\setlength{\tabcolsep}{2em}
 
 
 \usepackage{xspace}
@@ -174,12 +177,13 @@
 \begin{block}{University of Edinburgh}
 
 \begin{itemize}
+\item Moses with advanced features
+\vspace*{0.5ex}
 \item SLT system:
   \vspace*{0.5ex}
   \begin{itemize}
     \item Monolingual, monotone SMT punctuation model for punctuation of ASR output 
-    \item Operation sequence model over words and word clusters
-    \item Sparse lexical features and hierarchical lexicalized reordering
+    \item Phrase-based translation system with operation sequence model over words and word clusters, sparse lexical features and hierarchical lexicalized reordering
   \end{itemize}
 \vspace*{0.5ex}
 \item MT systems:
@@ -255,8 +259,20 @@
 \begin{block}{System Combination}
     ..
 \end{block}
-\addcontentsline{toc}{section}{Introduction}
 
+
+
+\begin{block}{Open Source MT System Combination}
+
+  \textbf{Our system combination framework is publicly available}
+ % \vspace*{0.5ex}
+   \begin{itemize}
+     \item Part of release 2.3 of the \textbf{Jane} toolkit \url{http://www.hltpr.rwth-aachen.de/jane/}
+     \vspace*{0.5ex}
+     \item M. Freitag, M. Huck, and H. Ney. \\Jane: Open Source Machine Translation System Combination. \\In Proc.\ of the EACL, Gothenburg, Sweden, April 2014.
+   \end{itemize}
+    \vspace{-0.2ex}
+\end{block}
 
 
 \end{column}
@@ -267,7 +283,7 @@
 \begin{table}[bt!]
 
   \begin{center}
-      \small
+%\small
     \begin{tabular}{l|c|c}
       %\hline
         \bf{\small{system}} & \multicolumn{2}{c}{\bf{\small{dev2012}}} \\
@@ -279,7 +295,6 @@
        \textbf{\small{syscom}}                            & \rdm{22.2321791584} & \rdm{59.27763729185552} \\
       \end{tabular}
      \end{center}
-     \vspace{-0.75cm}
      \label{tab:DeEnSLTResults}
    \end{table}
     \vspace{-0.5ex}
@@ -290,7 +305,7 @@
 \begin{table}[bt!]
 
     \begin{center}
-\small
+%\small
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
         \bf{\small{system}} & \multicolumn{2}{c|}{\bf{\small{tst2010}}} & \multicolumn{2}{c|}{\bf{\small{tst2011}}}  & \multicolumn{2}{c}{\bf{\small{tst2012}}} \\
@@ -312,10 +327,10 @@
 \begin{block}{English$\to$French MT Results}
 \begin{table}[bt!]
   \begin{center}
-\small
+%\small
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
-        \bf{system} & \multicolumn{2}{c|}{\bf{\small{tst2010}}} & \multicolumn{2}{c|}{\bf{\small{tst2011}}}  & \multicolumn{2}{c}{\bf{\small{tst2012}}} \\
+      \bf{\small{system}} & \multicolumn{2}{c|}{\bf{\small{tst2010}}} & \multicolumn{2}{c|}{\bf{\small{tst2011}}}  & \multicolumn{2}{c}{\bf{\small{tst2012}}} \\
                   & \small{\BLEU} & \small{\TER} & \small{\BLEU} & \small{\TER} & \small{\BLEU} & \small{\TER} \\
        \hline 
        \textbf{\small{FBK}}                             & \rdm{32.7992} & \rdm{50.4449} & \rdm{39.1848} & \rdm{42.6122} & \rdm{40.0121} & \rdm{41.3801} \\
@@ -337,10 +352,10 @@
 
 \begin{table}[bt!]
   \begin{center}
-\small
+%\small
     \begin{tabular}{l|c|c|c|c|c|c}
       %\hline
-        \bf{system} & \multicolumn{2}{c|}{\bf{\small{tst2010}}} & \multicolumn{2}{c|}{\bf{\small{tst2011}}}  & \multicolumn{2}{c}{\bf{\small{tst2012}}} \\
+      \bf{\small{system}} & \multicolumn{2}{c|}{\bf{\small{tst2010}}} & \multicolumn{2}{c|}{\bf{\small{tst2011}}}  & \multicolumn{2}{c}{\bf{\small{tst2012}}} \\
                     & \small{\BLEU} & \small{\TER} & \small{\BLEU} & \small{\TER} & \small{\BLEU} & \small{\TER} \\
        \hline
        \textbf{\small{KIT} }                             &        \rdm{24.5282} & \rdm{55.1522} & \rdm{27.0848} & \rdm{50.5152} & \rdm{23.5199} & \rdm{56.0189} \\
@@ -354,19 +369,6 @@
    \end{table}
     \vspace{-0.5ex}
 
-\end{block}
-
-
-\begin{block}{Open Source MT System Combination}
-
-  \textbf{Our system combination framework is publicly available}
- % \vspace*{0.5ex}
-   \begin{itemize}
-     \item Part of release 2.3 of the \textbf{Jane} toolkit \url{http://www.hltpr.rwth-aachen.de/jane/}
-     \vspace*{0.5ex}
-     \item M. Freitag, M. Huck, and H. Ney. \\Jane: Open Source Machine Translation System Combination. \\In Proc.\ of the EACL, Gothenburg, Sweden, April 2014.
-   \end{itemize}
-    \vspace{-0.2ex}
 \end{block}
 
 
